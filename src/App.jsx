@@ -9,6 +9,9 @@ function App() {
     // 1. ESTADOS DE NAVEGAÇÃO E ANIMAÇÃO
     const [tela, setTela] = useState('home');
     const [animando, setAnimando] = useState(false); // Controla se a classe fade-out está ativa
+    
+    // NOVO ESTADO: Controla se a animação do líquido está cobrindo a tela atual
+    const [exibirLoading, setExibirLoading] = useState(false);
 
     // 2. ESTADOS DO PEDIDO (Preços acumulados)
     const [precoTamanho, setPrecoTamanho] = useState(0);
@@ -24,7 +27,7 @@ function App() {
     // Verificamos se a tela atual está na nossa lista de animação
     const deveAnimar = telasComAnimacao.includes(tela);
 
-    // --- FUNÇÃO DE TRANSIÇÃO MESTRE ---
+    // --- FUNÇÕES DE TRANSIÇÃO MESTRE ---
     const mudarDeTela = (novaTela, acaoExtra = () => {}) => {
         // Só aplicamos o delay de animação se estivermos navegando entre telas de opções
         if (telasComAnimacao.includes(tela) || telasComAnimacao.includes(novaTela)) {
@@ -36,7 +39,7 @@ function App() {
                 setAnimando(false); // Inicia o Fade In
             }, 300); 
         } else {
-            // Se for transição Home -> Loading, muda instantaneamente sem delay
+            // Caso especial: Home -> Opções via Loading
             acaoExtra();
             setTela(novaTela);
         }
@@ -49,22 +52,33 @@ function App() {
     return (
         <div className="App">
 
-            {/* O container abaixo decide se aplica as classes de animação.
-                Se 'deveAnimar' for false (Home/Loading), ele não coloca classe nenhuma,
-                evitando que o site todo fique piscando no início.
-            */}
+            {/* TELA 1: HOME */}
+            {tela === 'home' && (
+                <div style={{ position: 'relative' }}>
+                    <Home onIniciar={() => {
+                        setExibirLoading(true); // 1. O líquido começa a cair (Home ainda está no fundo)
+                        
+                        // 2. AGUARDAMOS O LÍQUIDO COBRIR A TELA
+                        setTimeout(() => {
+                            setTela('opcoes'); // 3. ocorre a troca de telas
+                        }, 10000); 
+                    }} />
+                </div>
+            )}
+
+            {/* OVERLAY DE LOADING: Fica visível até a animação terminar por completo */}
+            {exibirLoading && (
+                <div className="overlay-loading">
+                    <AnimacaoLiquido onFinalizado={() => {
+                        // 4. Quando o líquido sumir de vez, a tela 'opcoes' já estará lá!
+                        setExibirLoading(false); 
+                    }} />
+                </div>
+            )}
+
+            {/* O container abaixo só aparece quando tela for 'opcoes', 'caldas' ou 'sabores' */}
             <div className={deveAnimar ? (animando ? 'fade-out' : 'fade-in') : ''}>
                 
-                {/* TELA 1: HOME */}
-                {tela === 'home' && (
-                    <Home onIniciar={() => mudarDeTela('loading')} />
-                )}
-
-                {/* TELA 2: LOADING */}
-                {tela === 'loading' && (
-                    <AnimacaoLiquido onFinalizado={() => mudarDeTela('opcoes')} />
-                )}
-
                 {/* TELA 3: SELEÇÃO DE TAMANHOS */}
                 {tela === 'opcoes' && (
                     <OpcaoMilkshake
@@ -92,8 +106,8 @@ function App() {
 
             </div>
 
-            {/* BARRA DE TOTAL FIXA*/}
-            {tela !== 'home' && tela !== 'loading' && (
+            {/* BARRA DE TOTAL FIXA */}
+            {tela !== 'home' && (
                 <BarraTotal valor={totalPedido} />
             )}
 
