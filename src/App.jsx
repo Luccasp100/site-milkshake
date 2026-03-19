@@ -2,81 +2,97 @@ import React, { useState } from 'react';
 import Home from './assets/Pages/Home/Home';
 import AnimacaoLiquido from './assets/Components/AnimacaoLiquido/AnimacaoLiquido';
 import OpcaoMilkshake from './assets/Components/OpcaoMilkshake/OpcaoMilkShake';
-import OpcaoCaldas from './assets/Components/OpcaoCaldas/OpcaoCaldas'; // Nova tela
+import OpcaoCaldas from './assets/Components/OpcaoCaldas/OpcaoCaldas'; 
 import BarraTotal from './assets/Components/BarraPrecoTotal/BarraPrecoTotal';
 
 function App() {
-    // 1. ESTADO DE NAVEGAÇÃO
-    // Mantive 'opcoes' para você continuar focado no desenvolvimento
-    const [tela, setTela] = useState('opcoes');
+    // 1. ESTADOS DE NAVEGAÇÃO E ANIMAÇÃO
+    const [tela, setTela] = useState('home');
+    const [animando, setAnimando] = useState(false); // Controla se a classe fade-out está ativa
 
-    // 2. ESTADOS DO PEDIDO (Estado Global)
-    // Separamos os preços para a soma ser precisa e permitir o "Voltar"
+    // 2. ESTADOS DO PEDIDO (Preços acumulados)
     const [precoTamanho, setPrecoTamanho] = useState(0);
     const [precoCalda, setPrecoCalda] = useState(0);
 
-    // O totalPedido agora é uma constante que soma os estados em tempo real
+    // Soma total calculada em tempo real
     const totalPedido = precoTamanho + precoCalda;
 
-    // --- FUNÇÕES DE NAVEGAÇÃO COM RESET ---
+    // 3. LOGICA DE FILTRO DE ANIMAÇÃO
+    // Criamos uma lista das telas que DEVEM ter o efeito de fade
+    const telasComAnimacao = ['opcoes', 'caldas', 'sabores'];
     
-    // Função para voltar das caldas resetando o valor selecionado anteriormente
-    const voltarParaTamanhos = () => {
-        setPrecoCalda(0); // Zera o valor da calda para não bugar o total
-        setTela('opcoes');
+    // Verificamos se a tela atual está na nossa lista de animação
+    const deveAnimar = telasComAnimacao.includes(tela);
+
+    // --- FUNÇÃO DE TRANSIÇÃO MESTRE ---
+    const mudarDeTela = (novaTela, acaoExtra = () => {}) => {
+        // Só aplicamos o delay de animação se estivermos navegando entre telas de opções
+        if (telasComAnimacao.includes(tela) || telasComAnimacao.includes(novaTela)) {
+            setAnimando(true); // Inicia o Fade Out
+            
+            setTimeout(() => {
+                acaoExtra(); // Executa limpezas de estado (ex: zerar calda)
+                setTela(novaTela); // Troca a tela no "escuro" (opacity 0)
+                setAnimando(false); // Inicia o Fade In
+            }, 300); 
+        } else {
+            // Se for transição Home -> Loading, muda instantaneamente sem delay
+            acaoExtra();
+            setTela(novaTela);
+        }
     };
 
-    // Função para voltar dos sabores resetando o valor da calda
-    const voltarParaCaldas = () => {
-        // Se quiser resetar algo ao voltar dos sabores, pode adicionar aqui
-        setTela('caldas');
-    };
+    // --- ATALHOS DE NAVEGAÇÃO ---
+    const voltarParaTamanhos = () => mudarDeTela('opcoes', () => setPrecoCalda(0));
+    const voltarParaCaldas = () => mudarDeTela('caldas');
 
     return (
         <div className="App">
 
-            {/* TELA 1: HOME 
-                O usuário clica em iniciar e mudamos para o loading */}
-            {tela === 'home' && (
-                <Home onIniciar={() => setTela('loading')} />
-            )}
+            {/* O container abaixo decide se aplica as classes de animação.
+                Se 'deveAnimar' for false (Home/Loading), ele não coloca classe nenhuma,
+                evitando que o site todo fique piscando no início.
+            */}
+            <div className={deveAnimar ? (animando ? 'fade-out' : 'fade-in') : ''}>
+                
+                {/* TELA 1: HOME */}
+                {tela === 'home' && (
+                    <Home onIniciar={() => mudarDeTela('loading')} />
+                )}
 
-            {/* TELA 2: LOADING (Animação do líquido)
-                Quando o líquido termina de descer (onFinalizado), mudamos para 'opcoes' */}
-            {tela === 'loading' && (
-                <AnimacaoLiquido onFinalizado={() => setTela('opcoes')} />
-            )}
+                {/* TELA 2: LOADING */}
+                {tela === 'loading' && (
+                    <AnimacaoLiquido onFinalizado={() => mudarDeTela('opcoes')} />
+                )}
 
-            {/* TELA 3: SELEÇÃO DE TAMANHOS
-                Atualiza apenas o 'precoTamanho' e permite ir para a próxima tela */}
-            {tela === 'opcoes' && (
-                <OpcaoMilkshake 
-                    onSelecionar={(valor) => setPrecoTamanho(valor)} 
-                    onProximo={() => setTela('caldas')}
-                />
-            )}
+                {/* TELA 3: SELEÇÃO DE TAMANHOS */}
+                {tela === 'opcoes' && (
+                    <OpcaoMilkshake
+                        onSelecionar={(valor) => setPrecoTamanho(valor)}
+                        onProximo={() => mudarDeTela('caldas')}
+                    />
+                )}
 
-            {/* TELA 4: SELEÇÃO DE CALDAS
-                Atualiza o 'precoCalda' e permite voltar para os tamanhos resetando o valor */}
-            {tela === 'caldas' && (
-                <OpcaoCaldas 
-                    onSelecionar={(valor) => setPrecoCalda(valor)} 
-                    onVoltar={voltarParaTamanhos} // Chama a função de reset
-                    onProximo={() => setTela('sabores')}
-                />
-            )}
+                {/* TELA 4: SELEÇÃO DE CALDAS */}
+                {tela === 'caldas' && (
+                    <OpcaoCaldas
+                        onSelecionar={(valor) => setPrecoCalda(valor)}
+                        onVoltar={voltarParaTamanhos}
+                        onProximo={() => mudarDeTela('sabores')}
+                    />
+                )}
 
-            {/* TELA 5: SABORES (Próxima etapa) */}
-            {tela === 'sabores' && (
-                <div style={{ textAlign: 'center', marginTop: '50px' }}>
-                    <h2>Agora escolha o sabor!</h2>
-                    <button onClick={voltarParaCaldas}>Voltar</button>
-                </div>
-            )}
+                {/* TELA 5: SABORES */}
+                {tela === 'sabores' && (
+                    <div style={{ textAlign: 'center', marginTop: '50px' }}>
+                        <h2>Agora escolha o sabor!</h2>
+                        <button onClick={voltarParaCaldas}>Voltar</button>
+                    </div>
+                )}
 
-            {/* BARRA DE TOTAL FIXA
-                Ela monitora a constante 'totalPedido' (Soma de Tamanho + Calda).
-                Só aparece após o loading e se não estiver na home. */}
+            </div>
+
+            {/* BARRA DE TOTAL FIXA*/}
             {tela !== 'home' && tela !== 'loading' && (
                 <BarraTotal valor={totalPedido} />
             )}
