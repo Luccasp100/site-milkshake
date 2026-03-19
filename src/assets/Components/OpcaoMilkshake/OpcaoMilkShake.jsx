@@ -2,14 +2,16 @@ import React, { useState } from 'react';
 import './OpcaoMilkshake.css';
 import dados from '../../Data/DadosMilkShake.json'; 
 
-const OpcaoMilkshake = ({ onSelecionar }) => {
-    // Estado local apenas para saber qual card mostrar como "ativo" (com a borda rosa)
+// Adicione o 'onProximo' aqui nas props
+const OpcaoMilkshake = ({ onSelecionar, onProximo }) => {
     const [itemSelecionado, setItemSelecionado] = useState(null);
 
-    // Função que gerencia o clique
     const handleEscolha = (item) => {
-        setItemSelecionado(item); // Marca visualmente o card
-        onSelecionar(item.preco); // Avisa o App.jsx para atualizar a BarraTotal global
+        setItemSelecionado(item); 
+        onSelecionar(item.preco); 
+        
+        // OPÇÃO A: Mudar de tela instantaneamente ao clicar no copo
+        // onProximo(); 
     };
 
     return (
@@ -24,7 +26,6 @@ const OpcaoMilkshake = ({ onSelecionar }) => {
                         onClick={() => handleEscolha(item)}
                     >
                         <div className="quadrado-azul"></div>
-                        
                         <div className="info-txt">
                             <span className="txt-nome">{item.nome}</span>
                             <span className="txt-preco">
@@ -34,6 +35,13 @@ const OpcaoMilkshake = ({ onSelecionar }) => {
                     </div>
                 ))}
             </div>
+
+            {/* OPÇÃO B: Botão de confirmar (Mais seguro para o usuário não errar) */}
+            {itemSelecionado && (
+                <button className="btn-proximo" onClick={onProximo}>
+                    Confirmar Tamanho
+                </button>
+            )}
         </div>
     );
 };

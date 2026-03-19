@@ -73,3 +73,22 @@
     font-weight: 600;
     text-align: left;
 }
+
+.btn-proximo {
+    margin-top: 40px;
+    padding: 15px 40px;
+    background-color: #f27a7a;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 10px rgba(242, 122, 122, 0.3);
+    transition: transform 0.2s;
+}
+
+.btn-proximo:hover {
+    transform: scale(1.05);
+    background-color: #ff9494;
+}

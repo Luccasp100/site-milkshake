@@ -15,5 +15,22 @@
             "nome": "750ml",
             "preco": 15.00
         }
+    ],
+    "caldas": [
+        {
+            "id": 1,
+            "nome": "Morango",
+            "preco": 10.00
+        },
+        {
+            "id": 2,
+            "nome": "Chocolate",
+            "preco": 10.00
+        },
+        {
+            "id": 3,
+            "nome": "Baunilha",
+            "preco": 10.00
+        }
     ]
 }
