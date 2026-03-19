@@ -1,43 +1,58 @@
-import { useState } from 'react';
-
-// Importação das Páginas
+import React, { useState } from 'react';
 import Home from './assets/Pages/Home/Home';
-// Importação do Componente de Animação
-import AnimacaoLiquido from './assets/Components/AnimacaoLiquido/AnimacaoLiquido'
+import AnimacaoLiquido from './assets/Components/AnimacaoLiquido/AnimacaoLiquido';
+import OpcaoMilkshake from './assets/Components/OpcaoMilkshake/OpcaoMilkShake';
+import BarraTotal from './assets/Components/BarraPrecoTotal/BarraPrecoTotal';
 
 function App() {
-  /**
-   * Estados possíveis:
-   * 'home' - Mostra a página inicial
-   * 'transicao' - Mostra o líquido preenchendo a tela
-   * 'opcoes' - Mostra a tela de montagem do milkshake
-   */
-  const [etapa, setEtapa] = useState('home');
+    // 1. ESTADO DE NAVEGAÇÃO
+    const [tela, setTela] = useState('opcoes');
 
-  return (
-    <div className="App">
-      
-      {/* 1. TELA PRINCIPAL (Home) */}
-      {etapa === 'home' && (
-        <Home onIniciar={() => setEtapa('transicao')} />
-      )}
+    // 2. ESTADO DO PEDIDO (Estado Global)
+    const [totalPedido, setTotalPedido] = useState(0);
 
-      {/* 2. ANIMAÇÃO DE CARREGAMENTO (Líquido) */}
-      {etapa === 'transicao' && (
-        <AnimacaoLiquido onFinalizado={() => setEtapa('opcoes')} />
-      )}
+    // 3. FUNÇÃO DE ATUALIZAÇÃO
+    const atualizarValorTotal = (novoValor) => {
+        setTotalPedido(novoValor);
+    };
 
-      {/* 3. TELA DE OPÇÕES (Montar Milkshake) */}
-      {etapa === 'opcoes' && (
-        <div className="tela-opcoes">
-          {/* Aqui entrará seu componente de montagem futuramente */}
-          <h1>Escolha suas opções</h1>
-          <button onClick={() => setEtapa('home')}>Voltar ao Início</button>
+    return (
+        <div className="App">
+
+            {/* TELA 1: HOME 
+                O usuário clica em iniciar e mudamos para o loading */}
+            {tela === 'home' && (
+                <Home onIniciar={() => setTela('loading')} />
+            )}
+
+            {/* TELA 2: LOADING (Animação do líquido)*/}
+            {tela === 'loading' && (
+                <AnimacaoLiquido onFinalizado={() => setTela('opcoes')} />
+            )}
+
+            {/* TELA 3: SELEÇÃO DE OPÇÕES (Tamanhos)
+                Passamos a função 'onSelecionar' para atualizar o total no App */}
+            {tela === 'opcoes' && (
+                <OpcaoMilkshake onSelecionar={(valor) => setTotalPedido(valor)} />
+            )}
+
+            {/* TELA 4: SABORES (Exemplo de próxima etapa)
+                A barra de total continuará aparecendo aqui com o valor salvo */}
+            {tela === 'sabores' && (
+                <div style={{ textAlign: 'center', marginTop: '50px' }}>
+                    <h2>Agora escolha o sabor!</h2>
+                    <button onClick={() => setTela('opcoes')}>Voltar</button>
+                </div>
+            )}
+
+            {/* BARRA DE TOTAL FIXA
+                Ela só deve aparecer após o loading e se não estiver na home. */}
+            {tela !== 'home' && tela !== 'loading' && (
+                <BarraTotal valor={totalPedido} />
+            )}
+
         </div>
-      )}
-
-    </div>
-  );
+    );
 }
 
 export default App;

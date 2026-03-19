@@ -1,0 +1,75 @@
+.opcoes-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 40px 20px;
+    background-color: #fff;
+    font-family: 'Inter', sans-serif;
+}
+
+.titulo-selecao {
+    font-weight: 500;
+    font-size: 1.5rem;
+    margin-bottom: 50px;
+}
+
+/* Onde a mágica acontece */
+.grid-opcoes {
+    display: flex;
+    flex-wrap: wrap;      /* Permite que os itens quebrem a linha */
+    justify-content: center; /* Centraliza os itens na linha */
+    gap: 30px;            /* Espaçamento entre os cards */
+    max-width: 900px;     /* Limita a largura para forçar a quebra após ~4 ou 5 itens */
+    width: 100%;
+}
+
+.card-opcao {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    /* Definimos uma largura base para o card não esticar demais */
+    flex: 0 1 150px; 
+    transition: transform 0.2s;
+}
+
+.card-opcao:hover {
+    transform: scale(1.05);
+}
+
+.quadrado-azul {
+    width: 130px;
+    height: 120px;
+    background-color: #B2EBF2;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+
+/* Feedback de seleção */
+.card-opcao.ativo .quadrado-azul {
+    outline: 4px solid #f27a7a;
+    background-color: #a0e4ee;
+}
+
+.txt-nome {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin: 5px 0;
+}
+
+.txt-preco {
+    font-size: 1rem;
+}
+
+.barra-total {
+    margin-top: 60px;
+    background-color: #FFD1D1;
+    width: 85%;
+    max-width: 500px;
+    padding: 18px 30px;
+    border-radius: 20px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    text-align: left;
+}
