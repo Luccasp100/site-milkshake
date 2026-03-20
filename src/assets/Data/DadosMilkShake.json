@@ -19,6 +19,26 @@
             "imagem": "/image/fundo3.png"
         }
     ],
+    "sabores": [
+        {
+            "id": 1,
+            "nome": "Baunilha",
+            "preco": 6.00,
+            "imagem": "/image/fundo6.png"
+        },
+        {
+            "id": 2,
+            "nome": "Chocolate",
+            "preco": 4.00,
+            "imagem": "/image/fundo7.png"
+        },
+        {
+            "id": 3,
+            "nome": "Morango",
+            "preco": 7.00,
+            "imagem": "/image/fundo8.png"
+        }
+    ],
     "caldas": [
         {
             "id": 1,
