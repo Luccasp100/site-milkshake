@@ -1,0 +1,179 @@
+/* CONTAINER PRINCIPAL */
+.opcoes-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza todos os blocos no meio da tela */
+    padding: 60px 0;
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+    position: relative;
+}
+
+/* ÁREA DE ALINHAMENTO DO BOTÃO VOLTAR */
+/* Esta div garante que o botão comece exatamente onde a barra começa */
+.area-voltar {
+    width: 85%;
+    max-width: 500px; 
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+    
+    /* Adicionamos o mesmo padding que a sua .barra-total possui (30px) */
+    /* Assim o botão começa exatamente onde a palavra "Total" começa */
+    padding: 0 30px; 
+    box-sizing: border-box; /* Garante que o padding não aumente o tamanho da caixa */
+}
+
+.btn-voltar-topo {
+    background: none;
+    border: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0;
+    /* Se a seta ainda parecer muito "pra fora", use um margin-left negativo de leve: */
+    margin-left: -5px; 
+    transition: color 0.2s, transform 0.2s;
+}
+
+.btn-voltar-topo:hover {
+    color: #f27a7a;
+    transform: translateX(-5px);
+}
+
+.seta {
+    font-size: 1.4rem;
+}
+
+/* TÍTULO */
+.titulo-selecao {
+    font-weight: 500;
+    font-size: 1.5rem;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+/* GRID DE OPÇÕES */
+.grid-opcoes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    max-width: 900px;
+    width: 100%;
+}
+
+/* CARDS */
+.card-opcao {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    flex: 0 1 150px; 
+    transition: transform 0.2s;
+}
+
+.card-opcao:hover {
+    transform: scale(1.05);
+}
+
+.container-img {
+    width: 100%;
+    height: 150px; /* Ajuste conforme seu layout */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 12px;
+    background-color: #f0f0f0; /* Um fundo neutro caso a imagem demore a carregar */
+    margin-bottom: 10px;
+}
+
+.img-opcao {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Faz a imagem preencher o espaço sem esticar */
+    transition: transform 0.3s ease;
+}
+
+.card-opcao:hover .img-opcao {
+    transform: scale(1.1); /* Um efeitinho de zoom ao passar o mouse */
+}
+
+/* --- FEEDBACK DE SELEÇÃO --- */
+.card-opcao.ativo .container-img {
+    border-color: #f27a7a;
+    box-shadow: 0 0 15px rgba(242, 122, 122, 0.4); /* Um brilho suave para destacar */
+    background-color: #a0e4ee; 
+}
+
+/* mudar a cor do texto quando selecionado */
+.card-opcao.ativo .txt-nome {
+    color: #f27a7a;
+    font-weight: bold;
+}
+
+.info-txt {
+    display: flex;
+    flex-direction: column; /* Força um item para baixo do outro */
+    align-items: center;    /* Centraliza os textos horizontalmente */
+    gap: 4px;              /* Espaçamento pequeno entre o nome e o preço */
+    margin-top: 10px;
+}
+
+.txt-nome {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.txt-preco {
+    font-size: 0.95rem;
+}
+
+/* BARRA DE PREÇO (Para referência de alinhamento) */
+.barra-total {
+    margin-top: 60px;
+    background-color: #FFD1D1;
+    width: 85%;
+    max-width: 500px;
+    padding: 18px 30px;
+    border-radius: 20px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    text-align: left;
+}
+
+/* BOTÃO PRÓXIMO */
+.btn-proximo {
+    margin-top: 50px;
+    padding: 15px 50px;
+    background-color: #f27a7a;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 15px rgba(242, 122, 122, 0.3);
+    transition: transform 0.2s;
+}
+
+.btn-proximo:hover {
+    transform: scale(1.05);
+    background-color: #ff9494;
+}
+
+/*animação fade in*/
+
+.fade-in {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}

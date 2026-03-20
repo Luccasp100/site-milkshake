@@ -1,17 +1,12 @@
 import React, { useState } from 'react';
-import './OpcaoMilkshake.css';
 import dados from '../../Data/DadosMilkShake.json'; 
 
-// Adicione o 'onProximo' aqui nas props
 const OpcaoMilkshake = ({ onSelecionar, onProximo }) => {
     const [itemSelecionado, setItemSelecionado] = useState(null);
 
     const handleEscolha = (item) => {
         setItemSelecionado(item); 
         onSelecionar(item.preco); 
-        
-        // OPÇÃO A: Mudar de tela instantaneamente ao clicar no copo
-        // onProximo(); 
     };
 
     return (
@@ -25,7 +20,10 @@ const OpcaoMilkshake = ({ onSelecionar, onProximo }) => {
                         className={`card-opcao ${itemSelecionado?.id === item.id ? 'ativo' : ''}`}
                         onClick={() => handleEscolha(item)}
                     >
-                        <div className="quadrado-azul"></div>
+                        <div className="container-img">
+                            <img src={item.imagem} alt={item.nome} className="img-opcao" />
+                        </div>
+
                         <div className="info-txt">
                             <span className="txt-nome">{item.nome}</span>
                             <span className="txt-preco">
@@ -36,7 +34,6 @@ const OpcaoMilkshake = ({ onSelecionar, onProximo }) => {
                 ))}
             </div>
 
-            {/* OPÇÃO B: Botão de confirmar (Mais seguro para o usuário não errar) */}
             {itemSelecionado && (
                 <button className="btn-proximo" onClick={onProximo}>
                     Confirmar Tamanho

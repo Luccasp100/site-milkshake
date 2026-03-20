@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import '../OpcaoMilkshake/OpcaoMilkShake.css'
 import dados from '../../Data/DadosMilkShake.json';
 
 const OpcaoCaldas = ({ onSelecionar, onVoltar, onProximo }) => {
@@ -22,15 +21,16 @@ const OpcaoCaldas = ({ onSelecionar, onVoltar, onProximo }) => {
             <h2 className="titulo-selecao">Selecione o tipo de calda</h2>
 
             <div className="grid-opcoes">
-                {/* 2. MAPEAMENTO DAS CALDAS DO JSON */}
+                {/* MAPEAMENTO DAS CALDAS DO JSON COM IMAGEM DINÂMICA */}
                 {dados.caldas.map((item) => (
                     <div
                         key={item.id}
                         className={`card-opcao ${caldaSelecionada?.id === item.id ? 'ativo' : ''}`}
                         onClick={() => handleEscolha(item)}
                     >
-                        {/* Cor bege conforme o seu print Desktop - 8 */}
-                        <div className="quadrado-azul" style={{ backgroundColor: '#EBCFB2' }}></div>
+                        <div className="container-img">
+                            <img src={item.imagem} alt={item.nome} className="img-opcao" />
+                        </div>
 
                         <div className="info-txt">
                             <span className="txt-nome">{item.nome}</span>
@@ -42,7 +42,7 @@ const OpcaoCaldas = ({ onSelecionar, onVoltar, onProximo }) => {
                 ))}
             </div>
 
-            {/* 3. BOTÃO PRÓXIMO (Só aparece se houver seleção) */}
+            {/* BOTÃO PRÓXIMO (Só aparece se houver seleção) */}
             {caldaSelecionada && (
                 <button className="btn-proximo" onClick={onProximo}>
                     Confirmar Calda

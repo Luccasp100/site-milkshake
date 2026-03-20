@@ -4,6 +4,7 @@ import AnimacaoLiquido from './assets/Components/AnimacaoLiquido/AnimacaoLiquido
 import OpcaoMilkshake from './assets/Components/OpcaoMilkshake/OpcaoMilkShake';
 import OpcaoCaldas from './assets/Components/OpcaoCaldas/OpcaoCaldas'; 
 import BarraTotal from './assets/Components/BarraPrecoTotal/BarraPrecoTotal';
+import './assets/Components/CssGlobal/OpcoesGlobais.css'; //estilo global da customização dos milkshakes
 
 function App() {
     // 1. ESTADOS DE NAVEGAÇÃO E ANIMAÇÃO
@@ -27,7 +28,7 @@ function App() {
     // Verificamos se a tela atual está na nossa lista de animação
     const deveAnimar = telasComAnimacao.includes(tela);
 
-    // --- FUNÇÕES DE TRANSIÇÃO MESTRE ---
+    // --- FUNÇÕES DE TRANSIÇÃO ---
     const mudarDeTela = (novaTela, acaoExtra = () => {}) => {
         // Só aplicamos o delay de animação se estivermos navegando entre telas de opções
         if (telasComAnimacao.includes(tela) || telasComAnimacao.includes(novaTela)) {
@@ -61,7 +62,7 @@ function App() {
                         // 2. AGUARDAMOS O LÍQUIDO COBRIR A TELA
                         setTimeout(() => {
                             setTela('opcoes'); // 3. ocorre a troca de telas
-                        }, 10000); 
+                        }, 10000); //tempo para trocar a tela 
                     }} />
                 </div>
             )}
