@@ -109,13 +109,6 @@ function App() {
                     />
                 )}
                 {/* TELA 6: FINALIZAÇÃO */}
-                {tela === 'sabores' && (
-                    <OpcaoSabores
-                        onSelecionar={(valor) => setPrecoSabor(valor)}
-                        onVoltar={voltarParaTamanhos}
-                        onProximo={() => mudarDeTela('caldas')}
-                    />
-                )}
 
             </div>
 

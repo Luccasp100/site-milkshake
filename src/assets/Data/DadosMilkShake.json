@@ -4,19 +4,19 @@
             "id": 1,
             "nome": "300ml",
             "preco": 5.00,
-            "imagem": "/image/fundo1.png"
+            "imagem": "/image/TamanhoCopo/Copo300ml.png"
         },
         {
             "id": 2,
             "nome": "500ml",
             "preco": 10.00,
-            "imagem": "/image/fundo2.png"
+            "imagem": "/image/TamanhoCopo/Copo500ml.png"
         },
         {
             "id": 3,
             "nome": "750ml",
             "preco": 15.00,
-            "imagem": "/image/fundo3.png"
+            "imagem": "/image/TamanhoCopo/Copo750ml.png"
         }
     ],
     "sabores": [
@@ -24,39 +24,57 @@
             "id": 1,
             "nome": "Baunilha",
             "preco": 6.00,
-            "imagem": "/image/fundo6.png"
+            "imagem": "/image/SaborMilkshake/MilkshakeBaunilha.png"
         },
-        {
+                {
             "id": 2,
-            "nome": "Chocolate",
-            "preco": 4.00,
-            "imagem": "/image/fundo7.png"
+            "nome": "Morango",
+            "preco": 7.00,
+            "imagem": "/image/SaborMilkshake/MilkshakeMorango.png"
         },
         {
             "id": 3,
-            "nome": "Morango",
-            "preco": 7.00,
-            "imagem": "/image/fundo8.png"
+            "nome": "Chocolate",
+            "preco": 4.00,
+            "imagem": "/image/SaborMilkshake/MilkshakeChocolate.png"
+        },
+        {
+            "id": 4,
+            "nome": "Flocos",
+            "preco": 5.00,
+            "imagem": "/image/SaborMilkshake/MilkshakeFlocos.png"
+        },
+        {
+            "id": 5,
+            "nome": "Banana",
+            "preco": 8.00,
+            "imagem": "/image/SaborMilkshake/MilkshakeBanana.png"
         }
     ],
     "caldas": [
         {
             "id": 1,
-            "nome": "Morango",
-            "preco": 10.00,
-            "imagem": "/image/fundo4.png"
+            "nome": "Biju",
+            "preco": 3.00,
+            "imagem": "/image/Adicionais/Biju.png"
         },
         {
             "id": 2,
-            "nome": "Chocolate",
-            "preco": 10.00,
-            "imagem": "/image/fundo5.png"
+            "nome": "Brownie",
+            "preco": 5.00,
+            "imagem": "/image/Adicionais/Brownie.png"
         },
         {
             "id": 3,
-            "nome": "Baunilha",
-            "preco": 10.00,
-            "imagem": "/image/fundo6.png"
+            "nome": "Caldas",
+            "preco": 2.00,
+            "imagem": "/image/Adicionais/Caldas.png"
+        },
+        {
+            "id": 4,
+            "nome": "Chantilly",
+            "preco": 4.00,
+            "imagem": "/image/Adicionais/Chantilly.png"
         }
     ]
 }
