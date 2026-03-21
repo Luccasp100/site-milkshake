@@ -6,9 +6,9 @@ const OpcaoMilkshake = ({ onSelecionar, onProximo }) => {
 
     const handleEscolha = (item) => {
         setItemSelecionado(item); 
-        onSelecionar(item.preco); 
+        onSelecionar(item); 
     };
-
+    
     return (
         <div className="opcoes-container">
             <h2 className="titulo-selecao">Selecione o tamanho do copo</h2>

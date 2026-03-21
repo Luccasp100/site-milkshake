@@ -1,0 +1,83 @@
+/* O fundo escurecido que cobre toda a tela */
+.carrinho-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Preto com 50% de transparência */
+    display: flex;
+    justify-content: flex-end; /* Alinha a lateral na direita */
+    z-index: 9999; /* Garante que fique acima de tudo */
+}
+
+/* A barra branca lateral */
+.carrinho-lateral {
+    width: 350px;
+    height: 100%;
+    background-color: white;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    animation: slideIn 0.3s ease-out; /* Efeito de deslizar */
+}
+
+.carrinho-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.carrinho-header h2 {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+}
+
+.btn-fechar-x {
+    background: none;
+    border: none;
+    font-size: 30px;
+    color: #ff4d4d;
+    cursor: pointer;
+}
+
+.carrinho-item-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+    border: 1px solid #ffcccc; /* Borda rosada clara */
+    border-radius: 15px;
+    margin-bottom: 15px;
+}
+
+.img-carrinho {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+
+.item-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.item-info .nome {
+    font-weight: bold;
+    color: #555;
+}
+
+.item-info .preco {
+    color: #333;
+    font-size: 0.9rem;
+}
+
+/* Animação para a lateral aparecer deslizando */
+@keyframes slideIn {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+}

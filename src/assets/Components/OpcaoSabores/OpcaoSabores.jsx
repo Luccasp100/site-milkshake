@@ -6,7 +6,7 @@ const OpcaoSabores = ({ onSelecionar, onVoltar, onProximo }) => {
 
     const handleEscolha = (item) => {
         setSaborSelecionado(item);
-        onSelecionar(item.preco);
+        onSelecionar(item); 
     };
 
     return (

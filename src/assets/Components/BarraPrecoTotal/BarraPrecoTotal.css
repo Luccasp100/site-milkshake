@@ -1,20 +1,91 @@
 .barra-total-fixa {
     position: fixed;
-    bottom: 30px;
+    bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
-    width: 85%;
-    max-width: 550px;
-    background-color: #FFD1D1;
-    padding: 20px 30px;
+    width: 90%;
+    max-width: 600px;
+    background-color: #f9cbd0; /* Rosa suave */
     border-radius: 20px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-    z-index: 999;
+    padding: 15px 25px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
 }
 
 .conteudo-barra {
-    font-size: 1.4rem;
-    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.textos {
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    color: #4a4a4a;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.valor-dinamico {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 900;
     color: #333;
-    text-align: left;
+    margin-top: 4px;
+}
+
+/* O BOTÃO DO CARRINHO */
+.btn-carrinho-icone {
+    background-color: rgba(255, 255, 255, 0.3); /* Círculo sutil branco por trás */
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-carrinho-icone:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+    transform: scale(1.1); /* Dá um leve pulinho ao passar o mouse */
+}
+
+.btn-carrinho-icone img {
+    width: 32px;
+    height: 32px;
+    /* filter: invert(1); <- para branco */
+}
+
+/* Ajuste para o ContadorAnimado não quebrar o layout */
+.valor-dinamico > div {
+    display: inline-block;
+}
+
+/* Adicione no .carrinho-item-card */
+.carrinho-item-card {
+    background: #fff;
+    transition: transform 0.2s ease;
+    border: 1px solid #ffe4e6;
+}
+
+.carrinho-item-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 107, 129, 0.1);
+}
+
+/* Estilo para quando não tem nada no carrinho */
+.carrinho-vazio {
+    text-align: center;
+    color: #aaa;
+    margin-top: 50px;
+    font-style: italic;
 }

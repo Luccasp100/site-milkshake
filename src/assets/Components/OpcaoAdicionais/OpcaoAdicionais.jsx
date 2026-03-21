@@ -6,7 +6,7 @@ const OpcaoAdicionais = ({ onSelecionar, onVoltar, onProximo }) => {
 
     const handleEscolha = (item) => {
         setAdicionalSelecionado(item);
-        onSelecionar(item.preco); // para somar o valor no app
+        onSelecionar(item); 
     };
 
     return (

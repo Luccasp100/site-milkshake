@@ -6,28 +6,41 @@ import OpcaoAdicionais from './assets/Components/OpcaoAdicionais/OpcaoAdicionais
 import BarraTotal from './assets/Components/BarraPrecoTotal/BarraPrecoTotal';
 import './assets/Components/CssGlobal/OpcoesGlobais.css'; //estilo global da customização dos milkshakes
 import OpcaoSabores from './assets/Components/OpcaoSabores/OpcaoSabores';
+import JanelaCarrinho from './assets/Components/JanelaCarrinho/JanelaCarrinho'; 
 
 function App() {
     // 1. ESTADOS DE NAVEGAÇÃO E ANIMAÇÃO
-    const [tela, setTela] = useState('opcoes'); // tela de inicio home/opcoes
+    const [tela, setTela] = useState('home'); // tela de inicio home/opcoes
     const [animando, setAnimando] = useState(false); // Controla se a classe fade-out está ativa
 
-    // NOVO ESTADO: Controla se a animação do líquido está cobrindo a tela atual
+    // Controla se a animação do líquido está cobrindo a tela atual
     const [exibirLoading, setExibirLoading] = useState(false);
 
+    // ESTADO DO CARRINHO: Controla se a janela lateral de pedidos está aberta
+    const [carrinhoAberto, setCarrinhoAberto] = useState(false);
+
     // 2. ESTADOS DO PEDIDO (Preços acumulados)
+    // Inicializamos sempre com 0 para evitar o erro NaN
     const [precoTamanho, setPrecoTamanho] = useState(0);
-    const [precoAdicional, setPrecoAdicional] = useState(0); // Corrigido de precoCalda para precoAdicional
+    const [precoAdicional, setPrecoAdicional] = useState(0); 
     const [precoSabor, setPrecoSabor] = useState(0);
 
-    // Soma total calculada em tempo real
-    const totalPedido = precoTamanho + precoAdicional + precoSabor;
+    // ESTADO DAS ESCOLHAS: Armazena os dados completos para o carrinho lateral
+    const [escolhas, setEscolhas] = useState({
+        tamanho: null,
+        sabor: null,
+        adicional: null
+    });
+
+    // CORREÇÃO DO NaN: Usamos o operador OR (||) para garantir que sempre somamos números.
+    // Se precoTamanho for undefined ou null, ele usa 0.
+    const totalPedido = (Number(precoTamanho) || 0) + (Number(precoAdicional) || 0) + (Number(precoSabor) || 0);
 
     // 3. LOGICA DE FILTRO DE ANIMAÇÃO
     //lista das telas que DEVEM ter o efeito de fade
     const telasComAnimacao = ['opcoes', 'adicionais', 'sabores'];
 
-    // Verificamos se a tela atual está na nossa lista de animação
+    // Verificamos se a tela atual está na lista de animação
     const deveAnimar = telasComAnimacao.includes(tela);
 
     // --- FUNÇÕES DE TRANSIÇÃO ---
@@ -42,15 +55,27 @@ function App() {
                 setAnimando(false); // Inicia o Fade In
             }, 300);
         } else {
-            // Caso especial: Home -> Opções via Loading
             acaoExtra();
             setTela(novaTela);
         }
     };
 
+    // Função auxiliar para salvar o item selecionado (nome, preco, imagem) no carrinho
+    const atualizarEscolha = (categoria, item) => {
+        setEscolhas(prev => ({ ...prev, [categoria]: item }));
+    };
+
     // --- ATALHOS DE NAVEGAÇÃO ---
-    const voltarParaTamanhos = () => mudarDeTela('opcoes', () => setPrecoSabor(0));
-    const voltarParaSabores = () => mudarDeTela('sabores', () => setPrecoAdicional(0));
+    const voltarParaTamanhos = () => mudarDeTela('opcoes', () => {
+        setPrecoSabor(0);
+        atualizarEscolha('sabor', null);
+    });
+    
+    const voltarParaSabores = () => mudarDeTela('sabores', () => {
+        setPrecoAdicional(0);
+        atualizarEscolha('adicional', null);
+    });
+
     const voltarParaAdicionais = () => mudarDeTela('adicionais');
 
     return (
@@ -65,7 +90,7 @@ function App() {
                         // 2. AGUARDAMOS O LÍQUIDO COBRIR A TELA
                         setTimeout(() => {
                             setTela('opcoes'); // 3. ocorre a troca de telas
-                        }, 10000); // tempo para trocar de tela
+                        }, 10000); // tempo para aparecer a proxíma tela 
                     }} />
                 </div>
             )}
@@ -86,7 +111,12 @@ function App() {
                 {/* TELA 3: SELEÇÃO DE TAMANHOS */}
                 {tela === 'opcoes' && (
                     <OpcaoMilkshake
-                        onSelecionar={(valor) => setPrecoTamanho(valor)}
+                        onSelecionar={(item) => {
+                            // Verificação de segurança: só atualiza se o item tiver preço
+                            const valor = item?.preco ?? 0;
+                            setPrecoTamanho(valor);
+                            atualizarEscolha('tamanho', item);
+                        }}
                         onProximo={() => mudarDeTela('sabores')}
                     />
                 )}
@@ -94,7 +124,11 @@ function App() {
                 {/* TELA 4: SELEÇÃO DE SABORES */}
                 {tela === 'sabores' && (
                     <OpcaoSabores
-                        onSelecionar={(valor) => setPrecoSabor(valor)}
+                        onSelecionar={(item) => {
+                            const valor = item?.preco ?? 0;
+                            setPrecoSabor(valor);
+                            atualizarEscolha('sabor', item);
+                        }}
                         onVoltar={voltarParaTamanhos}
                         onProximo={() => mudarDeTela('adicionais')}
                     />
@@ -103,11 +137,16 @@ function App() {
                 {/* TELA 5: SELEÇÃO DE ADICIONAIS */}
                 {tela === 'adicionais' && (
                     <OpcaoAdicionais
-                        onSelecionar={(valor) => setPrecoAdicional(valor)}
+                        onSelecionar={(item) => {
+                            const valor = item?.preco ?? 0;
+                            setPrecoAdicional(valor);
+                            atualizarEscolha('adicional', item);
+                        }}
                         onVoltar={voltarParaSabores}
                         onProximo={() => mudarDeTela('finalizacao')}
                     />
                 )}
+
                 {/* TELA 6: FINALIZAÇÃO */}
                 {tela === 'finalizacao' && (
                     <div className="opcoes-container">
@@ -120,10 +159,20 @@ function App() {
 
             </div>
 
-            {/* BARRA DE TOTAL FIXA */}
+            {/* BARRA DE TOTAL FIXA - Agora com a função de abrir o carrinho */}
             {tela !== 'home' && (
-                <BarraTotal valor={totalPedido} />
+                <BarraTotal 
+                    valor={totalPedido} 
+                    aoAbrirCarrinho={() => setCarrinhoAberto(true)} 
+                />
             )}
+
+            {/* JANELA LATERAL DE PEDIDOS (CARRINHO) */}
+            <JanelaCarrinho 
+                aberto={carrinhoAberto} 
+                aoFechar={() => setCarrinhoAberto(false)} 
+                itens={escolhas}
+            />
 
         </div>
     );
