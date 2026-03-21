@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import dados from '../../Data/DadosMilkShake.json';
 
-const OpcaoCaldas = ({ onSelecionar, onVoltar, onProximo }) => {
-    // Estado para controlar qual calda está com a borda de seleção
-    const [caldaSelecionada, setCaldaSelecionada] = useState(null);
+const OpcaoAdicionais = ({ onSelecionar, onVoltar, onProximo }) => {
+    const [adicionalSelecionado, setAdicionalSelecionado] = useState(null);
 
     const handleEscolha = (item) => {
-        setCaldaSelecionada(item);
-        onSelecionar(item.preco); // Avisa o App.jsx para somar o valor
+        setAdicionalSelecionado(item);
+        onSelecionar(item.preco); // para somar o valor no app
     };
 
     return (
@@ -18,14 +17,13 @@ const OpcaoCaldas = ({ onSelecionar, onVoltar, onProximo }) => {
                 </button>
             </div>
 
-            <h2 className="titulo-selecao">Selecione o tipo de calda</h2>
+            <h2 className="titulo-selecao">Selecione seus adicionais</h2>
 
             <div className="grid-opcoes">
-                {/* MAPEAMENTO DAS CALDAS DO JSON COM IMAGEM DINÂMICA */}
-                {dados.caldas.map((item) => (
+                {dados.adicionais.map((item) => (
                     <div
                         key={item.id}
-                        className={`card-opcao ${caldaSelecionada?.id === item.id ? 'ativo' : ''}`}
+                        className={`card-opcao ${adicionalSelecionado?.id === item.id ? 'ativo' : ''}`}
                         onClick={() => handleEscolha(item)}
                     >
                         <div className="container-img">
@@ -42,14 +40,13 @@ const OpcaoCaldas = ({ onSelecionar, onVoltar, onProximo }) => {
                 ))}
             </div>
 
-            {/* BOTÃO PRÓXIMO (Só aparece se houver seleção) */}
-            {caldaSelecionada && (
+            {adicionalSelecionado && (
                 <button className="btn-proximo" onClick={onProximo}>
-                    Confirmar Calda
+                    Confirmar Adicionais
                 </button>
             )}
         </div>
     );
 };
 
-export default OpcaoCaldas;
+export default OpcaoAdicionais;
