@@ -123,3 +123,36 @@
         transform: translateX(0);
     }
 }
+
+
+/* A barra rosa arredondada */
+.barra-total-carrinho {
+    background-color: #ffcbd1;
+    padding: 25px 20px; 
+    border-radius: 0px 30px 30px 0px; 
+    margin-left: -20px; 
+    margin-right: 20px;
+    
+    display: flex;
+    flex-direction: column;
+    gap: 8px; 
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.05);
+    
+    /* Garante que ela não ultrapasse a largura do carrinho */
+    width: fit-content;
+    min-width: 80%;
+}
+
+.label-total {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #4a4a4a;
+}
+
+.valor-total {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.8rem; 
+    font-weight: 900;
+    color: #333;
+}

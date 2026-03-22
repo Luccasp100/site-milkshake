@@ -26,6 +26,7 @@ function App() {
     const [precoSabor, setPrecoSabor] = useState(0);
 
     // ESTADO DAS ESCOLHAS: Armazena os dados completos para o carrinho lateral
+    const [total, setTotal] = useState(0);
     const [escolhas, setEscolhas] = useState({
         tamanho: null,
         sabor: null,
@@ -172,6 +173,7 @@ function App() {
                 aberto={carrinhoAberto} 
                 aoFechar={() => setCarrinhoAberto(false)} 
                 itens={escolhas}
+                total={total}
             />
 
         </div>
