@@ -61,21 +61,23 @@
 
 /* GRID DE OPÇÕES */
 .grid-opcoes {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    /* Cria 4 colunas de tamanhos iguais (1fr) */
+    grid-template-columns: repeat(4, 1fr); 
+    justify-items: center;
     gap: 30px;
-    max-width: 900px;
+    max-width: 800px; 
     width: 100%;
+    margin: 0 auto;
 }
-
 /* CARDS */
 .card-opcao {
     display: flex;
     flex-direction: column;
     align-items: center;
     cursor: pointer;
-    flex: 0 1 150px;
+    width: 100%; /* Ocupa o espaço da coluna do grid */
+    max-width: 180px; 
     transition: transform 0.2s;
 }
 
