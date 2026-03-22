@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Home from './assets/Pages/Home/Home';
 import AnimacaoLiquido from './assets/Components/AnimacaoLiquido/AnimacaoLiquido';
-import OpcaoMilkshake from './assets/Components/OpcaoTamanhoMilkshake/OpcaoTamanhoMilkShake';
+import OpcaoMilkshake from './assets/Components/OpcaoTamanho/OpcaoTamanho';
 import OpcaoAdicionais from './assets/Components/OpcaoAdicionais/OpcaoAdicionais';
 import BarraTotal from './assets/Components/BarraPrecoTotal/BarraPrecoTotal';
 import './assets/Components/CssGlobal/OpcoesGlobais.css'; //estilo global da customização dos milkshakes
@@ -10,7 +10,7 @@ import JanelaCarrinho from './assets/Components/JanelaCarrinho/JanelaCarrinho';
 
 function App() {
     // 1. ESTADOS DE NAVEGAÇÃO E ANIMAÇÃO
-    const [tela, setTela] = useState('home'); // tela de inicio home/opcoes
+    const [tela, setTela] = useState('opcoes'); // tela de inicio home/opcoes
     const [animando, setAnimando] = useState(false); // Controla se a classe fade-out está ativa
 
     // Controla se a animação do líquido está cobrindo a tela atual

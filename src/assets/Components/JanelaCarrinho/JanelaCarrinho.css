@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
 /* O fundo escurecido que cobre toda a tela */
 .carrinho-overlay {
     position: fixed;
@@ -5,10 +7,13 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Preto com 50% de transparência */
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Preto com 50% de transparência */
     display: flex;
-    justify-content: flex-end; /* Alinha a lateral na direita */
-    z-index: 9999; /* Garante que fique acima de tudo */
+    justify-content: flex-end;
+    /* Alinha a lateral na direita */
+    z-index: 9999;
+    /* Garante que fique acima de tudo */
 }
 
 /* A barra branca lateral */
@@ -20,7 +25,8 @@
     padding: 20px;
     display: flex;
     flex-direction: column;
-    animation: slideIn 0.3s ease-out; /* Efeito de deslizar */
+    animation: slideIn 0.3s ease-out;
+    /* Efeito de deslizar */
 }
 
 .carrinho-header {
@@ -32,9 +38,10 @@
     margin-bottom: 20px;
 }
 
-.carrinho-header h2 {
+.carrinho-header {
     font-family: 'Arial', sans-serif;
     color: #333;
+    font-size: 20px;
 }
 
 .btn-fechar-x {
@@ -45,20 +52,44 @@
     cursor: pointer;
 }
 
+.btn-fechar-x:hover {
+    transform: scale(1.4);
+}
+
 .carrinho-item-card {
     display: flex;
     align-items: center;
     gap: 15px;
     padding: 10px;
-    border: 1px solid #ffcccc; /* Borda rosada clara */
+    border: 1px solid #ffcccc;
+    /* Borda rosada clara */
+    background: #fff;
+    transition: transform 0.2s ease;
+    border: 1px solid #ffe4e6;
     border-radius: 15px;
     margin-bottom: 15px;
 }
 
+.carrinho-item-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(255, 107, 129, 0.1);
+}
+
+/* Estilo para quando não tem nada no carrinho */
+.carrinho-vazio {
+    text-align: center;
+    font-size: 18px;
+    color: #aaa;
+    margin-top: 50px;
+    font-style: italic;
+}
+
 .img-carrinho {
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
     object-fit: contain;
+    border-radius: 50%;
+    border: 1px solid #ffcccc;
 }
 
 .item-info {
@@ -66,18 +97,29 @@
     flex-direction: column;
 }
 
-.item-info .nome {
+.item-info .nome-carrinho {
     font-weight: bold;
-    color: #555;
 }
 
-.item-info .preco {
-    color: #333;
+.item-info .preco-carrinho {
     font-size: 0.9rem;
+}
+
+.nome-carrinho,
+.preco-carrinho {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+
 }
 
 /* Animação para a lateral aparecer deslizando */
 @keyframes slideIn {
-    from { transform: translateX(100%); }
-    to { transform: translateX(0); }
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
 }

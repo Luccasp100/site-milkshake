@@ -1,8 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
 /* CONTAINER PRINCIPAL */
 .opcoes-container {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centraliza todos os blocos no meio da tela */
+    align-items: center;
+    /* Centraliza todos os blocos no meio da tela */
     padding: 60px 0;
     min-height: 100vh;
     font-family: 'Inter', sans-serif;
@@ -13,15 +16,15 @@
 /* Esta div garante que o botão comece exatamente onde a barra começa */
 .area-voltar {
     width: 85%;
-    max-width: 500px; 
+    max-width: 500px;
     display: flex;
     justify-content: flex-start;
     margin-bottom: 20px;
-    
     /* Adicionamos o mesmo padding que a sua .barra-total possui (30px) */
     /* Assim o botão começa exatamente onde a palavra "Total" começa */
-    padding: 0 30px; 
-    box-sizing: border-box; /* Garante que o padding não aumente o tamanho da caixa */
+    padding: 0 30px;
+    box-sizing: border-box;
+    /* Garante que o padding não aumente o tamanho da caixa */
 }
 
 .btn-voltar-topo {
@@ -35,7 +38,7 @@
     gap: 8px;
     padding: 0;
     /* Se a seta ainda parecer muito "pra fora", use um margin-left negativo de leve: */
-    margin-left: -5px; 
+    margin-left: -5px;
     transition: color 0.2s, transform 0.2s;
 }
 
@@ -72,7 +75,7 @@
     flex-direction: column;
     align-items: center;
     cursor: pointer;
-    flex: 0 1 150px; 
+    flex: 0 1 150px;
     transition: transform 0.2s;
 }
 
@@ -82,32 +85,37 @@
 
 .container-img {
     width: 100%;
-    height: 150px; /* Ajuste conforme seu layout */
+    height: 150px;
+    /* Ajuste conforme seu layout */
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
     border-radius: 12px;
-    background-color: #f0f0f0; /* Um fundo neutro caso a imagem demore a carregar */
+    background-color: #f0f0f0;
+    /* Um fundo neutro caso a imagem demore a carregar */
     margin-bottom: 10px;
 }
 
 .img-opcao {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Faz a imagem preencher o espaço sem esticar */
+    object-fit: cover;
+    /* Faz a imagem preencher o espaço sem esticar */
     transition: transform 0.3s ease;
 }
 
 .card-opcao:hover .img-opcao {
-    transform: scale(1.1); /* Um efeitinho de zoom ao passar o mouse */
+    transform: scale(1.1);
+    /* Um efeitinho de zoom ao passar o mouse */
 }
 
 /* --- FEEDBACK DE SELEÇÃO --- */
 .card-opcao.ativo .container-img {
     border-color: #f27a7a;
-    box-shadow: 0 0 15px rgba(242, 122, 122, 0.4); /* Um brilho suave para destacar */
-    background-color: #a0e4ee; 
+    box-shadow: 0 0 15px rgba(242, 122, 122, 0.4);
+    /* Um brilho suave para destacar */
+    background-color: #a0e4ee;
 }
 
 /* mudar a cor do texto quando selecionado */
@@ -118,12 +126,17 @@
 
 .info-txt {
     display: flex;
-    flex-direction: column; /* Força um item para baixo do outro */
-    align-items: center;    /* Centraliza os textos horizontalmente */
-    gap: 4px;              /* Espaçamento pequeno entre o nome e o preço */
+    flex-direction: column;
+    /* Força um item para baixo do outro */
+    align-items: center;
+    /* Centraliza os textos horizontalmente */
+    gap: 4px;
+    /* Espaçamento pequeno entre o nome e o preço */
     margin-top: 10px;
 }
 
+
+/* TEXTOS DOS QUADRADOS DOS ITENS */
 .txt-nome {
     font-weight: bold;
     font-size: 1.1rem;
@@ -131,6 +144,13 @@
 
 .txt-preco {
     font-size: 0.95rem;
+}
+
+.txt-nome,
+.txt-preco {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
 }
 
 /* BARRA DE PREÇO (Para referência de alinhamento) */

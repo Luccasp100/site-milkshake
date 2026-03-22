@@ -24,8 +24,8 @@ const JanelaCarrinho = ({ aberto, aoFechar, itens }) => {
                             <div key={index} className="carrinho-item-card">
                                 <img src={item.imagem} alt={item.nome} className="img-carrinho" />
                                 <div className="item-info">
-                                    <span className="nome">{item.nome}</span>
-                                    <span className="preco">R$ {item.preco.toFixed(2).replace('.', ',')}</span>
+                                    <span className="nome-carrinho">{item.nome}</span>
+                                    <span className="preco-carrinho">R$ {item.preco.toFixed(2).replace('.', ',')}</span>
                                 </div>
                             </div>
                         ))

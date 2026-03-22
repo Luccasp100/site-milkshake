@@ -2,19 +2,19 @@
     "tamanhos": [
         {
             "id": 1,
-            "nome": "300ml",
+            "nome": "Copo 300ml",
             "preco": 5.00,
             "imagem": "/image/TamanhoCopo/Copo300ml.png"
         },
         {
             "id": 2,
-            "nome": "500ml",
+            "nome": "Copo 500ml",
             "preco": 10.00,
             "imagem": "/image/TamanhoCopo/Copo500ml.png"
         },
         {
             "id": 3,
-            "nome": "750ml",
+            "nome": "Copo 750ml",
             "preco": 15.00,
             "imagem": "/image/TamanhoCopo/Copo750ml.png"
         }
@@ -75,6 +75,30 @@
             "nome": "Chantilly",
             "preco": 4.00,
             "imagem": "/image/Adicionais/Chantilly.png"
+        },
+        {
+            "id": 5,
+            "nome": "Amendoim",
+            "preco": 2.00,
+            "imagem": "/image/Adicionais/Amendoim.png"
+        },
+        {
+            "id": 6,
+            "nome": "Achocolatado",
+            "preco": 2.00,
+            "imagem": "/image/Adicionais/Achocolatado.png"
+        },
+        {
+            "id": 7,
+            "nome": "Bolachas",
+            "preco": 3.00,
+            "imagem": "/image/Adicionais/Bolachas.png"
+        },
+        {
+            "id": 8,
+            "nome": "Frutas",
+            "preco": 7.00,
+            "imagem": "/image/Adicionais/Frutas.png"
         }
     ]
 }
