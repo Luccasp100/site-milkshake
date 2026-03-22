@@ -1,0 +1,120 @@
+.finalizar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: 'Poppins', sans-serif;
+}
+
+.titulo-finalizar {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    color: #333;
+}
+
+.resumo-pedido {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+.card-item-final {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 150px;
+}
+
+.img-final {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    background-color: #f9f9f9;
+    border-radius: 15px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.nome-final {
+    font-weight: bold;
+    color: #444;
+}
+
+.preco-final {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.total-finalizar {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    padding: 10px 30px;
+    background: #f1f1f1;
+    border-radius: 50px;
+}
+
+.acoes-botoes {
+    display: flex;
+    flex-direction: column; 
+    gap: 15px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.btn-final {
+    padding: 18px;
+    border: none;
+    border-radius: 40px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.btn-secundario {
+    background-color: #f08080;
+    color: black;
+}
+
+.btn-destaque {
+    background-color: #f08080;
+    color: black;
+    font-weight: bold;
+}
+
+.btn-final:hover {
+    transform: scale(1.03);
+    filter: brightness(0.9);
+}
+
+.container-pagamento {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Força o botão de destaque a esticar dentro do novo container */
+.container-pagamento .btn-destaque {
+    width: 100%;
+}
+
+.msg-erro-pagamento {
+    color: #333;
+    font-size: 0.9rem;
+    margin-top: 10px;
+    font-weight: 500;
+    text-align: center;
+    /* Uma animaçãozinha para não aparecer do nada */
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}

@@ -6,13 +6,13 @@ import OpcaoAdicionais from './assets/Components/OpcaoAdicionais/OpcaoAdicionais
 import BarraTotal from './assets/Components/BarraPrecoTotal/BarraPrecoTotal';
 import './assets/Components/CssGlobal/OpcoesGlobais.css'; //estilo global da customização dos milkshakes
 import OpcaoSabores from './assets/Components/OpcaoSabores/OpcaoSabores';
-import JanelaCarrinho from './assets/Components/JanelaCarrinho/JanelaCarrinho'; 
+import JanelaCarrinho from './assets/Components/JanelaCarrinho/JanelaCarrinho';
+import PedidoFinalizado from './assets/Components/PedidoFinalizado/PedidoFinalizado';
 
 function App() {
     // 1. ESTADOS DE NAVEGAÇÃO E ANIMAÇÃO
     const [tela, setTela] = useState('opcoes'); // tela de inicio home/opcoes
     const [animando, setAnimando] = useState(false); // Controla se a classe fade-out está ativa
-
     // Controla se a animação do líquido está cobrindo a tela atual
     const [exibirLoading, setExibirLoading] = useState(false);
 
@@ -22,31 +22,39 @@ function App() {
     // 2. ESTADOS DO PEDIDO (Preços acumulados)
     // Inicializamos sempre com 0 para evitar o erro NaN
     const [precoTamanho, setPrecoTamanho] = useState(0);
-    const [precoAdicional, setPrecoAdicional] = useState(0); 
+    const [precoAdicional, setPrecoAdicional] = useState(0);
     const [precoSabor, setPrecoSabor] = useState(0);
 
     // ESTADO DAS ESCOLHAS: Armazena os dados completos para o carrinho lateral
-    const [total, setTotal] = useState(0);
     const [escolhas, setEscolhas] = useState({
         tamanho: null,
         sabor: null,
         adicional: null
     });
 
-    // CORREÇÃO DO NaN: Usamos o operador OR (||) para garantir que sempre somamos números.
     // Se precoTamanho for undefined ou null, ele usa 0.
+    // CÁLCULO DO TOTAL: Sempre atualizado com base nos estados de preço
     const totalPedido = (Number(precoTamanho) || 0) + (Number(precoAdicional) || 0) + (Number(precoSabor) || 0);
+
+    // --- FUNÇÃO DE RESET (Limpa tudo para um novo pedido) ---
+    const resetarTudo = () => {
+        setPrecoTamanho(0);
+        setPrecoSabor(0);
+        setPrecoAdicional(0);
+        setEscolhas({
+            tamanho: null,
+            sabor: null,
+            adicional: null
+        });
+    };
 
     // 3. LOGICA DE FILTRO DE ANIMAÇÃO
     //lista das telas que DEVEM ter o efeito de fade
     const telasComAnimacao = ['opcoes', 'adicionais', 'sabores'];
-
-    // Verificamos se a tela atual está na lista de animação
     const deveAnimar = telasComAnimacao.includes(tela);
 
     // --- FUNÇÕES DE TRANSIÇÃO ---
     const mudarDeTela = (novaTela, acaoExtra = () => { }) => {
-        // Só aplicamos o delay de animação se estivermos navegando entre telas de opções
         if (telasComAnimacao.includes(tela) || telasComAnimacao.includes(novaTela)) {
             setAnimando(true); // Inicia o Fade Out
 
@@ -67,17 +75,20 @@ function App() {
     };
 
     // --- ATALHOS DE NAVEGAÇÃO ---
+    const aoVoltarHome = () => {
+        resetarTudo(); // Garante que ao voltar para a home, o valor zere
+        setTela('home');
+    };
+
     const voltarParaTamanhos = () => mudarDeTela('opcoes', () => {
         setPrecoSabor(0);
         atualizarEscolha('sabor', null);
     });
-    
+
     const voltarParaSabores = () => mudarDeTela('sabores', () => {
         setPrecoAdicional(0);
         atualizarEscolha('adicional', null);
     });
-
-    const voltarParaAdicionais = () => mudarDeTela('adicionais');
 
     return (
         <div className="App">
@@ -144,36 +155,39 @@ function App() {
                             atualizarEscolha('adicional', item);
                         }}
                         onVoltar={voltarParaSabores}
-                        onProximo={() => mudarDeTela('finalizacao')}
+                        onProximo={() => mudarDeTela('resumo')}
                     />
                 )}
 
                 {/* TELA 6: FINALIZAÇÃO */}
-                {tela === 'finalizacao' && (
-                    <div className="opcoes-container">
-                        <h2 className="titulo-selecao">Pedido Finalizado!</h2>
-                        <button className="btn-proximo" onClick={() => setTela('home')}>
-                            Novo Pedido
-                        </button>
-                    </div>
+                {tela === 'resumo' && (
+                    <PedidoFinalizado
+                        escolhas={escolhas}
+                        total={totalPedido} // Use totalPedido que é sua soma real
+                        aoVoltarHome={aoVoltarHome} // Usa a função com reset
+                        aoReiniciarMilkshake={() => {
+                            resetarTudo(); // Zera os valores para a nova escolha
+                            mudarDeTela('opcoes');
+                        }}
+                    />
                 )}
 
             </div>
 
-            {/* BARRA DE TOTAL FIXA - Agora com a função de abrir o carrinho */}
-            {tela !== 'home' && (
-                <BarraTotal 
-                    valor={totalPedido} 
-                    aoAbrirCarrinho={() => setCarrinhoAberto(true)} 
+            {/* BARRA DE TOTAL FIXA - some na home e no resumo */}
+            {tela !== 'home' && tela !== 'resumo' && (
+                <BarraTotal
+                    valor={totalPedido}
+                    aoAbrirCarrinho={() => setCarrinhoAberto(true)}
                 />
             )}
 
             {/* JANELA LATERAL DE PEDIDOS (CARRINHO) */}
-            <JanelaCarrinho 
-                aberto={carrinhoAberto} 
-                aoFechar={() => setCarrinhoAberto(false)} 
+            <JanelaCarrinho
+                aberto={carrinhoAberto}
+                aoFechar={() => setCarrinhoAberto(false)}
                 itens={escolhas}
-                total={total}
+                total={totalPedido} // Corrigido para usar totalPedido
             />
 
         </div>
