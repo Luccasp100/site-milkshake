@@ -1,8 +1,5 @@
 .barra-total-fixa {
-    position: relative;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
+    margin: 40px auto 20px;
     width: 90%;
     max-width: 600px;
     background-color: #f9cbd0; /* Rosa suave */

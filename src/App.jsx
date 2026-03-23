@@ -187,7 +187,7 @@ function App() {
                 aberto={carrinhoAberto}
                 aoFechar={() => setCarrinhoAberto(false)}
                 itens={escolhas}
-                total={totalPedido} // Corrigido para usar totalPedido
+                total={totalPedido} 
             />
 
         </div>
