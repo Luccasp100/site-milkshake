@@ -8,10 +8,11 @@ import './assets/Components/CssGlobal/OpcoesGlobais.css'; //estilo global da cus
 import OpcaoSabores from './assets/Components/OpcaoSabores/OpcaoSabores';
 import JanelaCarrinho from './assets/Components/JanelaCarrinho/JanelaCarrinho';
 import PedidoFinalizado from './assets/Components/PedidoFinalizado/PedidoFinalizado';
+import Footer from './assets/Layout/Footer/Footer';
 
 function App() {
     // 1. ESTADOS DE NAVEGAÇÃO E ANIMAÇÃO
-    const [tela, setTela] = useState('opcoes'); // tela de inicio home/opcoes
+    const [tela, setTela] = useState('home'); // tela de inicio home/opcoes
     const [animando, setAnimando] = useState(false); // Controla se a classe fade-out está ativa
     // Controla se a animação do líquido está cobrindo a tela atual
     const [exibirLoading, setExibirLoading] = useState(false);
@@ -189,6 +190,8 @@ function App() {
                 itens={escolhas}
                 total={totalPedido} 
             />
+            
+            <Footer/>
 
         </div>
     );
