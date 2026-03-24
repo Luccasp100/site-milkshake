@@ -184,3 +184,56 @@
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
 }
+
+/*--------- RESPONSIVIDADE ---------*/
+
+/* TABLETS E LAPTOPS PEQUENOS (1024px) */
+@media (max-width: 1024px) {
+    .grid-opcoes {
+        max-width: 90%; /* Dá um pouco mais de respiro nas laterais */
+        gap: 20px;
+    }
+
+    .card-opcao {
+        /* Ajusta para 3 itens por linha (33.33%) */
+        flex: 0 1 calc(33.33% - 20px); 
+    }
+}
+
+/* TABLETS E CELULARES GRANDES (768px) */
+@media (max-width: 768px) {
+    .opcoes-container {
+        padding: 40px 0; /* Diminui o recuo superior */
+    }
+
+    .titulo-selecao {
+        font-size: 1.3rem;
+        margin-bottom: 30px;
+        padding: 0 20px;
+    }
+
+    .grid-opcoes {
+        gap: 15px;
+    }
+
+    .card-opcao {
+        /* Ajusta para 2 itens por linha (50%) */
+        flex: 0 1 calc(50% - 15px);
+        min-width: 140px;
+    }
+
+    .container-img {
+        height: 130px; /* Reduz um pouco a altura da imagem para não ocupar a tela toda */
+    }
+
+    .area-voltar {
+        width: 100%;
+        padding: 0 20px;
+        justify-content: center; /* Centraliza o voltar no mobile pra facilitar o clique */
+    }
+    
+    .btn-proximo {
+        width: 80%; /* Botão maior no mobile para facilitar o toque */
+        padding: 15px 0;
+    }
+}

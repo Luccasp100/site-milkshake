@@ -66,3 +66,47 @@
 .valor-dinamico > div {
     display: inline-block;
 }
+
+/*--------- RESPONSIVIDADE ---------*/
+
+/* TABLETS E LAPTOPS PEQUENOS (1024px) */
+@media (max-width: 1024px) {
+    .barra-total-fixa {
+        max-width: 550px; /* Reduz um pouco a largura máxima */
+        padding: 12px 20px;
+    }
+
+    .valor-dinamico {
+        font-size: 1.6rem; /* Diminui levemente o valor */
+    }
+}
+
+/* TABLETS E CELULARES GRANDES (768px) */
+@media (max-width: 768px) {
+    .barra-total-fixa {
+        width: 90%; /* Reduzimos um pouco para garantir que não toque as bordas */
+        margin: 20px auto; 
+        padding: 10px 15px; /* Padding levemente menor */
+        border-radius: 15px;
+        box-sizing: border-box; /* impede que o padding cause rolagem lateral */
+    }
+
+    .label {
+        font-size: 0.75rem; 
+    }
+
+    .valor-dinamico {
+        font-size: 1.2rem; /* Valor mais discreto para telas pequenas */
+        margin-top: 2px;
+    }
+
+    .btn-carrinho-icone {
+        width: 45px; /* Reduzimos o círculo do carrinho */
+        height: 45px;
+    }
+
+    .btn-carrinho-icone img {
+        width: 22px; /* Ícone interno menor */
+        height: 22px;
+    }
+}

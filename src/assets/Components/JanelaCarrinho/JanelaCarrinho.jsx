@@ -1,7 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react'; // Adicionado useEffect
 import './JanelaCarrinho.css';
 
 const JanelaCarrinho = ({ aberto, aoFechar, itens, total }) => {
+
+    // LÓGICA PARA TRAVAR A ROLAGEM DO FUNDO
+    useEffect(() => {
+        if (aberto) {
+            // Quando o carrinho abre, remove o scroll do body
+            document.body.style.overflow = 'hidden';
+        } else {
+            // Quando fecha, devolve o scroll original
+            document.body.style.overflow = 'unset';
+        }
+
+        // Cleanup: Garante que o scroll volte ao normal se o componente sumir
+        return () => {
+            document.body.style.overflow = 'unset';
+        };
+    }, [aberto]);
+    
     // 1. Se não estiver aberto, não faz nada
     if (!aberto) return null;
 
@@ -26,7 +43,8 @@ const JanelaCarrinho = ({ aberto, aoFechar, itens, total }) => {
                     <button className="btn-fechar-x" onClick={aoFechar}>&times;</button>
                 </div>
 
-                <div className="carrinho-lista">
+                {/* Adicionada a classe carrinho-lista-scroll para permitir rolar itens internamente */}
+                <div className="carrinho-lista carrinho-lista-scroll">
                     {listaDeItens.length === 0 ? (
                         <p className="carrinho-vazio">Nenhum item selecionado</p>
                     ) : (
