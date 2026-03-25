@@ -103,7 +103,7 @@ function App() {
                         // 2. AGUARDAMOS O LÍQUIDO COBRIR A TELA
                         setTimeout(() => {
                             setTela('opcoes'); // 3. ocorre a troca de telas
-                        }, 9830); // tempo para aparecer a proxíma tela 
+                        }, 9825); // tempo para aparecer a proxíma tela 
                     }} />
                 </div>
             )}
