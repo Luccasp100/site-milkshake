@@ -53,6 +53,22 @@
     transform: scale(1.1);
 }
 
+.footer-container.bg-home {
+    background-color: #fff5f5; /* Cor exata da sua Home */
+    transition: background-color 0.3s ease; /* Transição suave na troca */
+}
+
+.footer-container.bg-branco {
+    background-color: #ffffff; /* Fica branco nas opções */
+    transition: background-color 0.3s ease;
+}
+
+/* Ajuste opcional: se a linha fina estiver sumindo no branco, 
+   podemos mudar a cor dela também */
+.bg-branco .footer-linha-fina {
+    background-color: #f0f0f0;
+}
+
 /* --- AJUSTE PARA MOBILE --- */
 @media (max-width: 768px) {
     .footer-texto {

@@ -191,7 +191,7 @@ function App() {
                 total={totalPedido} 
             />
             
-            <Footer/>
+            <Footer telaAtual={tela} />
 
         </div>
     );

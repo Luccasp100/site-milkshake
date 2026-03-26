@@ -1,8 +1,9 @@
 import './Footer.css'
 
-function Footer() {
+function Footer({ telaAtual }) { // Recebe a prop aqui
     return (
-        <footer className='footer-container'>
+        /* Se a tela for 'home', adiciona a classe 'bg-home', senão 'bg-branco' */
+        <footer className={`footer-container ${telaAtual === 'home' ? 'bg-home' : 'bg-branco'}`}>
             <div className='footer-linha-fina'></div>
             <div className='footer-content'>
                 <p className='footer-texto'>Feito por Luccas Fernandes</p>
