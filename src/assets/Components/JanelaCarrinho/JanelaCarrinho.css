@@ -17,6 +17,7 @@
 }
 
 /* A barra branca lateral */
+
 .carrinho-lateral {
     width: 350px;
     height: 100%;
@@ -25,23 +26,74 @@
     padding: 20px;
     display: flex;
     flex-direction: column;
+    /* Organiza header -> lista -> footer em coluna */
     animation: slideIn 0.3s ease-out;
-    /* Efeito de deslizar */
 }
 
+/* 2. O header fica fixo no topo por padrão do flex */
 .carrinho-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 2px solid #eee;
-    padding-bottom: 15px;
+    flex-shrink: 0;
+    /* Impede o header de encolher se a tela for pequena */
+    /* ... seu estilo existente ... */
+}
+
+/* 3. A LÓGICA DO SCROLL: A área da lista cresce e rola */
+.carrinho-lista-scroll {
+    flex: 1;
+    /* Faz a lista crescer para ocupar todo o espaço entre o header e o footer */
+    overflow-y: auto;
+    /* Ativa a rolagem vertical quando necessário */
+    padding-right: 10px;
+    /* Espaço para o scroll não colar nos itens */
     margin-bottom: 20px;
+    /* Espaço para o footer rosa */
+
+    /* Melhora a aparência do scroll (Opcional, mas recomendado) */
+    scrollbar-width: thin;
+    /* Para Firefox */
+    scrollbar-color: #ffcbd1 transparent;
+}
+
+/* 4. Estilo do scroll para navegadores Webkit (Chrome, Edge, Safari) */
+.carrinho-lista-scroll::-webkit-scrollbar {
+    width: 8px;
+    /* Largura da barra */
+}
+
+.carrinho-lista-scroll::-webkit-scrollbar-thumb {
+    background-color: #ffcbd1;
+    /* Cor rosa da sua barra de total */
+    border-radius: 10px;
+}
+
+.carrinho-lista-scroll::-webkit-scrollbar-track {
+    background-color: #f9f9f9;
+    /* Cor de fundo da trilha */
+}
+
+/* 5. O footer rosa fica fixo na base */
+.carrinho-footer {
+    flex-shrink: 0;
+    /* Impede o footer de sumir */
+    margin-top: auto;
+    /* Empurra o footer para o final do container */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    /* Centraliza a barra rosa se necessário */
+    padding-bottom: 30px;
 }
 
 .carrinho-header {
     font-family: 'Arial', sans-serif;
     color: #333;
     font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .btn-fechar-x {
@@ -128,19 +180,23 @@
 /* A barra rosa arredondada */
 .barra-total-carrinho {
     background-color: #ffcbd1;
-    padding: 25px 20px; 
-    border-radius: 0px 30px 30px 0px; 
-    margin-left: -20px; 
-    margin-right: 20px;
-    
+    padding: 25px 30px;
+    /* Aumentamos o padding para o texto não colar no canto */
+
+    margin-left: -20px;
+    /* Isso anula o padding do container pai (.carrinho-lateral) */
+    border-radius: 0 30px 30px 0;
+    /* Reto na esquerda (0), arredondado na direita */
+
     display: flex;
     flex-direction: column;
-    gap: 8px; 
+    gap: 8px;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.05);
-    
-    /* Garante que ela não ultrapasse a largura do carrinho */
-    width: fit-content;
-    min-width: 80%;
+
+    width: calc(100% + 20px);
+    /* Garante que ela ocupe a largura total considerando o recuo */
+    max-width: 90%;
+    /* Mantém um respiro do lado direito para não tocar a outra borda */
 }
 
 .label-total {
@@ -152,7 +208,7 @@
 
 .valor-total {
     font-family: 'Inter', sans-serif;
-    font-size: 1.8rem; 
+    font-size: 1.8rem;
     font-weight: 900;
     color: #333;
 }
@@ -162,13 +218,19 @@
     height: 100vh;
 }
 
-/*--------- RESPONSIVIDADE ---------*/
+/*--------- RESPONSIVIDADE CORRIGIDA ---------*/
 
 /* TABLETS E LAPTOPS PEQUENOS (1024px) */
 @media (max-width: 1024px) {
     .carrinho-lateral {
-        width: 400px; /* Aumentamos um pouco a largura para facilitar a leitura */
-        padding: 25px;
+        width: 400px;
+        padding: 25px; /* Aumentou o padding */
+    }
+
+    .barra-total-carrinho {
+        /* Ajuste: anula os 25px de padding do pai */
+        margin-left: -31px; 
+        width: calc(100% + 25px);
     }
 
     .valor-total {
@@ -179,14 +241,17 @@
 /* TABLETS E CELULARES GRANDES (768px) */
 @media (max-width: 768px) {
     .carrinho-lateral {
-        width: 100%; /* Ocupa a tela inteira */
-        border-radius: 0; /* Remove arredondamentos se houver */
-        padding: 15px;
+        width: 100%;
+        border-radius: 0;
+        padding: 15px; /* Diminuiu o padding */
     }
 
-    .carrinho-header {
-        padding-bottom: 10px;
-        margin-bottom: 15px;
+    .barra-total-carrinho {
+        /* Ajuste: anula os 15px de padding do pai */
+        margin-left: -43px;
+        width: calc(100% + 15px);
+        margin-right: 0; /* Remove margens laterais que desalinham no mobile */
+        min-width: 85%;
     }
 
     .carrinho-header h2 {
@@ -194,39 +259,13 @@
     }
 
     .btn-fechar-x {
-        font-size: 35px; /* X maior para ser mais fácil de fechar no touch */
+        font-size: 35px;
         padding: 5px 10px;
-    }
-
-    /* Ajuste dos cards de itens no carrinho */
-    .carrinho-item-card {
-        padding: 12px;
-        gap: 10px;
     }
 
     .img-carrinho {
         width: 60px;
         height: 60px;
-    }
-
-    .nome-carrinho {
-        font-size: 1rem;
-    }
-
-    /* Ajuste da barra rosa de total no mobile */
-    .barra-total-carrinho {
-    background-color: #ffcbd1;
-    padding: 25px 20px; 
-    border-radius: 0px 30px 30px 0px; 
-    margin-left: -20px; 
-    margin-right: 40px;
-    
-    display: flex;
-    flex-direction: column;
-    gap: 8px; 
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.05);
-    width: fit-content;
-    min-width: 80%;
     }
 
     .valor-total {

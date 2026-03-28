@@ -150,10 +150,12 @@ function App() {
                 {/* TELA 5: SELEÇÃO DE ADICIONAIS */}
                 {tela === 'adicionais' && (
                     <OpcaoAdicionais
-                        onSelecionar={(item) => {
-                            const valor = item?.preco ?? 0;
-                            setPrecoAdicional(valor);
-                            atualizarEscolha('adicional', item);
+                        onSelecionar={(listaDeItens) => {
+                            // Agora 'listaDeItens' é um array. Somamos o preço de cada um:
+                            const totalAdicionais = listaDeItens.reduce((soma, item) => soma + (item?.preco || 0), 0);
+
+                            setPrecoAdicional(totalAdicionais);
+                            atualizarEscolha('adicional', listaDeItens); // Salva o array de objetos no estado 'escolhas'
                         }}
                         onVoltar={voltarParaSabores}
                         onProximo={() => mudarDeTela('resumo')}
@@ -188,7 +190,7 @@ function App() {
                 aberto={carrinhoAberto}
                 aoFechar={() => setCarrinhoAberto(false)}
                 itens={escolhas}
-                total={totalPedido} 
+                total={totalPedido}
             />
             {/* Lógica para esconder o Footer: */}
             {/* Ele só será renderizado se a tela for DIFERENTE de 'resumo' */}
