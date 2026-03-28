@@ -11,6 +11,22 @@
     position: relative;
 }
 
+button,
+a,
+img,
+.card-opcao {
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+    /* Garante que o contorno de foco também suma */
+}
+
+.card-opcao:active {
+    opacity: 0.7;
+    transform: scale(0.95);
+    /* Dá uma leve sensação de clique/pressão */
+    transition: 0.2s;
+}
+
 /* ÁREA DE ALINHAMENTO DO BOTÃO VOLTAR */
 /* Esta div garante que o botão comece exatamente onde a barra começa */
 .area-voltar {
@@ -113,7 +129,7 @@
 /* --- FEEDBACK DE SELEÇÃO --- */
 .card-opcao.ativo .container-img {
     border-color: #f27a7a;
-    box-shadow: 0 0 15px rgba(242, 122, 122, 0.4);
+    box-shadow: 0 0 15px rgba(248, 93, 93, 0.4);
     /* Um brilho suave para destacar */
     background-color: #a0e4ee;
 }
@@ -190,20 +206,22 @@
 /* TABLETS E LAPTOPS PEQUENOS (1024px) */
 @media (max-width: 1024px) {
     .grid-opcoes {
-        max-width: 90%; /* Dá um pouco mais de respiro nas laterais */
+        max-width: 90%;
+        /* Dá um pouco mais de respiro nas laterais */
         gap: 20px;
     }
 
     .card-opcao {
         /* Ajusta para 3 itens por linha (33.33%) */
-        flex: 0 1 calc(33.33% - 20px); 
+        flex: 0 1 calc(33.33% - 20px);
     }
 }
 
 /* TABLETS E CELULARES GRANDES (768px) */
 @media (max-width: 768px) {
     .opcoes-container {
-        padding: 40px 0; /* Diminui o recuo superior */
+        padding: 40px 0;
+        /* Diminui o recuo superior */
     }
 
     .titulo-selecao {
@@ -223,17 +241,20 @@
     }
 
     .container-img {
-        height: 130px; /* Reduz um pouco a altura da imagem para não ocupar a tela toda */
+        height: 130px;
+        /* Reduz um pouco a altura da imagem para não ocupar a tela toda */
     }
 
     .area-voltar {
         width: 100%;
         padding: 0 20px;
-        justify-content: center; /* Centraliza o voltar no mobile pra facilitar o clique */
+        justify-content: center;
+        /* Centraliza o voltar no mobile pra facilitar o clique */
     }
-    
+
     .btn-proximo {
-        width: 80%; /* Botão maior no mobile para facilitar o toque */
+        width: 80%;
+        /* Botão maior no mobile para facilitar o toque */
         padding: 15px 0;
     }
 }

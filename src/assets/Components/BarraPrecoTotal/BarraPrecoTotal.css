@@ -1,5 +1,5 @@
 .barra-total-fixa {
-    margin: 40px auto 20px;
+    margin: 40px auto 40px;
     width: 90%;
     max-width: 600px;
     background-color: #f9cbd0; /* Rosa suave */
@@ -85,7 +85,7 @@
 @media (max-width: 768px) {
     .barra-total-fixa {
         width: 90%; /* Reduzimos um pouco para garantir que não toque as bordas */
-        margin: 20px auto; 
+        margin: 20px auto 40px; 
         padding: 10px 15px; /* Padding levemente menor */
         border-radius: 15px;
         box-sizing: border-box; /* impede que o padding cause rolagem lateral */

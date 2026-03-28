@@ -190,8 +190,9 @@ function App() {
                 itens={escolhas}
                 total={totalPedido} 
             />
-            
-            <Footer telaAtual={tela} />
+            {/* Lógica para esconder o Footer: */}
+            {/* Ele só será renderizado se a tela for DIFERENTE de 'resumo' */}
+            {tela !== 'resumo' && <Footer telaAtual={tela} />}
 
         </div>
     );

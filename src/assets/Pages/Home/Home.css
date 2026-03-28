@@ -15,7 +15,7 @@
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 40px 20px;
+    padding: 40px 0px;
     overflow-x: hidden;
 }
 
@@ -26,7 +26,7 @@
 
 .home-footer {
     text-align: center;
-    padding: 60px 0;
+    padding: 50px 0;
 }
 
 /* --- ESTRUTURA DAS SEÇÕES --- */
@@ -339,12 +339,12 @@
 
     /* Traz as setas para DENTRO do fundo rosa */
     .seta-carrossel.esquerda {
-        left: 10px; /* Valor positivo = dentro da borda */
+        left: -50px; /* Valor positivo = dentro da borda */
         z-index: 10;
     }
 
     .seta-carrossel.direita {
-        right: 10px; /* Valor positivo = dentro da borda */
+        right: -50px; /* Valor positivo = dentro da borda */
         z-index: 10;
     }
 }
@@ -373,7 +373,7 @@
         text-align: center;
         gap: 50px;
         width: 100%;
-        padding: 40px 15px; /* Evita que o conteúdo encoste nas bordas laterais */
+        padding: 30px 0px; /* Evita que o conteúdo encoste nas bordas laterais */
     }
 
     .banner-destaque {
