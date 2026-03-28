@@ -62,7 +62,7 @@
             "id": 2,
             "nome": "Brownie",
             "preco": 5.00,
-            "imagem": "/image/Adicionais/Brownie.png"
+            "imagem": "public/image/Adicionais/Brownie.png"
         },
         {
             "id": 3,
