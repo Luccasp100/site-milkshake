@@ -54,7 +54,7 @@
 }
 
 .footer-container.bg-home {
-    background-color: #fff5f5; /* Cor exata da sua Home */
+    background-color: #fff9f9; /* Cor exata da sua Home */
     transition: background-color 0.3s ease; /* Transição suave na troca */
 }
 

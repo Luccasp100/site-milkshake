@@ -1,25 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@400;500;600;700&display=swap');
+
+/* ==========================================================================
+   1. CONFIGURAÇÕES GERAIS E ESTRUTURA (LAYOUT)
+   ========================================================================== */
+
+.home-page-wrapper {
+    width: 100%;
+    background-color: #fff9f9;
+    min-height: 100vh;
+    /* Garante que o fundo cubra a altura toda da tela */
+}
+
 .home-container {
-    height: 100vh;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    overflow-x: hidden;
+}
+
+.home-header {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.home-footer {
+    text-align: center;
+    padding: 60px 0;
+}
+
+/* --- ESTRUTURA DAS SEÇÕES --- */
+.secao-apresentacao {
     display: flex;
     align-items: center;
-    justify-content: center;
-    background-color: #fff5f5; /* Um tom bem clarinho de rosa/creme */
-    text-align: center;
-    font-family: 'Inter', sans-serif;
+    justify-content: space-around;
+    margin-bottom: 120px;
+    gap: 60px;
 }
 
-.home-content h1 {
-    font-size: 3.5rem;
-    color: #f27a7a; /* O mesmo rosa do líquido */
-    margin-bottom: 10px;
+.imagem-esquerda {
+    flex-direction: row-reverse;
 }
 
-.home-content p {
+.conteudo-secao {
+    flex: 1;
+    max-width: 450px;
+}
+
+/* ==========================================================================
+   2. TIPOGRAFIA E ELEMENTOS DE TEXTO
+   ========================================================================== */
+
+.titulo-app {
+    font-family: "Lobster", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 4.5rem;
+}
+
+.titulo-secao {
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.texto-secao {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: normal;
     color: #666;
-    margin-bottom: 30px;
+    line-height: 1.6;
 }
 
-.btn-começar {
+.texto-destaque {
+    color: #f27a7a;
+}
+
+/* ==========================================================================
+   3. COMPONENTES (BOTÕES, JANELAS E DIAMANTES)
+   ========================================================================== */
+
+/* --- BOTÕES --- */
+.btn-montar-pedido {
     padding: 15px 40px;
     font-size: 1.2rem;
     background-color: #f27a7a;
@@ -31,7 +95,343 @@
     font-weight: bold;
 }
 
-.btn-começar:hover {
+.btn-montar-pedido:hover {
     background-color: #ff9494;
     transform: scale(1.05);
+}
+
+/* --- DIAMANTES (QUADRADOS ROTACIONADOS) --- */
+.janela-milkshake {
+    width: 250px;
+    height: 250px;
+    border-radius: 20px;
+    transform: rotate(45deg);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    flex-shrink: 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.janela-milkshake:hover {
+    transform: rotate(45deg) scale(1.05);
+}
+
+.img-animada-milkshake {
+    position: absolute;
+    width: 260px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-45deg) translateY(150%);
+    opacity: 0;
+    transition: transform 0.3s ease;
+    animation: subirVertical 1.5s ease-out forwards;
+}
+
+/* ==========================================================================
+   4. CARROSSEL (BANNER E NAVEGAÇÃO)
+   ========================================================================== */
+
+.banner-destaque {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8f9fa;
+    padding: 100px 40px;
+    border-radius: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    gap: 100px;
+    /* Espaço entre texto e o conjunto do carrossel */
+}
+
+/* O wrapper é o ponto de referência para as setas */
+.carrossel-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.janela-carrossel {
+    width: 320px;
+    height: 280px;
+    background-color: #E2E2E2;
+    /* Cor padrão quando não houver sabor */
+    border-radius: 30px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    transition: background-color 0.5s ease;
+    /* Faz a cor mudar suavemente */
+}
+
+.img-carrossel-animada {
+    width: 250px;
+    animation: subirCarrossel 0.8s ease-out forwards;
+}
+
+.legenda-sabor {
+    position: absolute;
+    bottom: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 5px 20px;
+    border-radius: 20px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    color: #333;
+    animation: fadeInSabor 0.5s ease-out;
+}
+
+/* --- SETAS (POSICIONAMENTO ABSOLUTO) --- */
+.seta-carrossel {
+    position: absolute;
+    /* Fixa as setas em relação ao carrossel-wrapper */
+    top: 50%;
+    transform: translateY(-50%);
+    background: white;
+    border: none;
+    font-size: 1.2rem;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.seta-carrossel:hover {
+    background: #f0f0f0;
+    transform: translateY(-50%) scale(1.1);
+}
+
+/* Posiciona cada seta nas extremidades horizontais */
+.seta-carrossel.esquerda {
+    left: -50px; /* Valor negativo empurra para fora da esquerda */
+    padding: 0;
+}
+
+.seta-carrossel.direita {
+    right: -50px; /* Valor negativo empurra para fora da direita */
+    padding: 0;
+}
+
+/* Espelha horizontalmente a imagem APENAS na seta da esquerda */
+.seta-carrossel.esquerda .img-seta-carrossel {
+    transform: scaleX(-1);
+    /* Inverte o ícone da esquerda */
+}
+
+/* Garante que a imagem na direita NÃO seja espelhada */
+.seta-carrossel.direita .img-seta-carrossel {
+    transform: scaleX(1);
+    /* Mantém o ícone original da direita */
+}
+
+.img-seta-carrossel {
+    width: 1.2rem;
+    height: 1.2rem;
+    object-fit: contain;
+}
+
+/* ==========================================================================
+   5. TEMAS DE CORES (SABORES)
+   ========================================================================== */
+
+/* --- CORES DINÂMICAS DO CARROSSEL --- */
+.sabor-chocolate { background-color: #ede0d4 !important; } /* Caramelo sutil */
+.sabor-morango   { background-color: #fae4e2 !important; } /* Rosa suave */
+.sabor-baunilha  { background-color: #fdf5e6cc !important; } /* Marfim/Baunilha */
+.sabor-flocos    { background-color: #e4ded9 !important; } /* bege claro */
+.sabor-banana    { background-color: #fdf5c7 !important; } /* Um amarelo claro */
+
+/* --- CORES DAS JANELAS ESTÁTICAS --- */
+.cor-janela-milkshake-chocolate { background-color: #ede0d4; }
+.cor-janela-milkshake-morango   { background-color: #fae4e2; }
+
+/* ==========================================================================
+   6. ANIMAÇÕES (KEYFRAMES)
+   ========================================================================== */
+
+@keyframes subirVertical {
+    0% { transform: translateX(-50%) rotate(-45deg) translateY(150%); opacity: 0; }
+    100% { transform: translateX(-50%) rotate(-45deg) translateY(20%); opacity: 1; }
+}
+
+@keyframes subirCarrossel {
+    0% { transform: translateY(100%); opacity: 0; }
+    100% { transform: translateY(10%); opacity: 1; }
+}
+
+@keyframes fadeInSabor {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   7. RESPONSIVIDADE (MEDIA QUERIES)
+   ========================================================================== */
+
+/* Tablet Grande / Laptops Pequenos (1024px) */
+@media (max-width: 1024px) {
+    /* 1. Evita que qualquer coisa "vaze" para os lados */
+    .home-container {
+        padding: 0; /* Remove os 20px laterais que causam o recuo branco */
+        overflow-x: hidden;
+        width: 100%;
+    }
+
+    /* 2. Diminui os diamantes para não atropelarem o texto */
+    .janela-milkshake {
+        width: 180px;  /* Antes era muito grande para tablet */
+        height: 170px;
+        flex-shrink: 0; /* Impede o diamante de amassar */
+    }
+
+        .img-animada-milkshake {
+        width: 100%; 
+        max-width: 200px; 
+    }
+
+    /* 3. Ajusta a seção para o texto ter prioridade */
+    .secao-apresentacao {
+        gap: 30px;
+        padding: 0 20px;
+        align-items: center;
+    }
+
+    .conteudo-secao {
+        max-width: 55%; /* Limita o texto para dar respiro ao diamante */
+    }
+
+
+    /* 4. O CARROSSEL (Onde as setas estão fugindo) */
+    .banner-destaque {
+        gap: 30px;
+        padding: 40px 20px;
+        width: 90%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column; /* No tablet, empilhar já ajuda muito o visual */
+        align-items: center;
+    }
+
+    /* Forçamos o wrapper a ser do tamanho da imagem rosa */
+    .carrossel-wrapper {
+        width: 100%;
+        max-width: 320px; /* Limite do fundo rosa */
+        position: relative;
+        margin: 0 auto;
+    }
+
+    .janela-carrossel {
+        width: 100%; /* Ocupa o wrapper */
+        height: 260px;
+    }
+
+    /* Traz as setas para DENTRO do fundo rosa */
+    .seta-carrossel.esquerda {
+        left: 10px; /* Valor positivo = dentro da borda */
+        z-index: 10;
+    }
+
+    .seta-carrossel.direita {
+        right: 10px; /* Valor positivo = dentro da borda */
+        z-index: 10;
+    }
+}
+
+/* Tablets e Celulares Grandes (768px) */
+@media (max-width: 768px) {
+
+    .home-container{
+        padding: 0px;
+    }
+
+    .home-header {
+        margin-bottom: 50px;
+        margin-top: 20px;
+    }
+
+    .titulo-app {
+        font-size: 2.5rem; /* Reduzi um pouco para evitar quebra de linha feia */
+    }
+
+    /* Empilha as seções verticalmente */
+    .secao-apresentacao, 
+    .imagem-esquerda,
+    .banner-destaque {
+        flex-direction: column;
+        text-align: center;
+        gap: 50px;
+        width: 100%;
+        padding: 40px 15px; /* Evita que o conteúdo encoste nas bordas laterais */
+    }
+
+    .banner-destaque {
+        gap: 30px;
+        padding: 40px 20px;
+        width: 90%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column; /* No tablet, empilhar já ajuda muito o visual */
+        align-items: center;
+    }
+
+    .conteudo-secao {
+        max-width: 100%;
+        width: 90%;
+    }
+    
+    .janela-milkshake {
+        margin: 0 auto;
+        width: 200px;
+        height: 190px;
+    }
+
+    /* A imagem dentro do diamante deve encolher */
+    .img-animada-milkshake {
+        width: 100%; 
+        max-width: 200px; 
+    }
+
+    .carrossel-wrapper {
+        width: 100%;
+        max-width: 300px; /* Mesma largura da .janela-carrossel */
+        margin: 0 auto;  /* Centraliza o conjunto todo */
+        position: relative;
+    }
+
+    .janela-carrossel {
+        width: 100%; 
+        height: 238px; /* Diminuímos a altura para ficar mais proporcional no celular */
+    }
+
+    .seta-carrossel.esquerda {
+        left: -40px; /* Move a seta para dentro da borda esquerda */
+    }
+
+    .seta-carrossel.direita {
+        right: -40px; /* Move a seta para dentro da borda direita */
+    }
+
+    /* 4. Reduzimos o tamanho das setas para não cobrirem muito o milkshake */
+    .seta-carrossel {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .btn-montar-pedido {
+        width: 100%;
+        max-width: 300px;
+        padding: 15px;
+    }
 }
