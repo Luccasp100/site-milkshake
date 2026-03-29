@@ -1,3 +1,7 @@
+/* ==========================================================================
+   1. CONFIGURAÇÕES GERAIS E LAYOUT (CONTAINER)
+   ========================================================================== */
+
 .finalizar-container {
     display: flex;
     flex-direction: column;
@@ -13,6 +17,10 @@
     margin-bottom: 40px;
     color: #333;
 }
+
+/* ==========================================================================
+   2. RESUMO DO PEDIDO (CARDS DE ITENS)
+   ========================================================================== */
 
 .resumo-pedido {
     display: flex;
@@ -50,6 +58,10 @@
     color: #666;
 }
 
+/* ==========================================================================
+   3. ÁREA DE VALORES E PAGAMENTO
+   ========================================================================== */
+
 .total-finalizar {
     font-size: 1.5rem;
     margin-bottom: 30px;
@@ -57,6 +69,26 @@
     background: #f1f1f1;
     border-radius: 50px;
 }
+
+.container-pagamento {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.msg-erro-pagamento {
+    color: #333;
+    font-size: 0.9rem;
+    margin-top: 10px;
+    font-weight: 500;
+    text-align: center;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+/* ==========================================================================
+   4. COMPONENTES (BOTÕES E AÇÕES)
+   ========================================================================== */
 
 .acoes-botoes {
     display: flex;
@@ -73,7 +105,12 @@
     font-size: 1.1rem;
     font-weight: 500;
     cursor: pointer;
-    transition: transform 0.2s;
+    transition: transform 0.2s, filter 0.2s;
+}
+
+.btn-final:hover {
+    transform: scale(1.03);
+    filter: brightness(0.9);
 }
 
 .btn-secundario {
@@ -87,34 +124,35 @@
     font-weight: bold;
 }
 
-.btn-final:hover {
-    transform: scale(1.03);
-    filter: brightness(0.9);
-}
-
-.container-pagamento {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* Força o botão de destaque a esticar dentro do novo container */
+/* Força o botão de destaque a esticar dentro do container de pagamento */
 .container-pagamento .btn-destaque {
     width: 100%;
 }
 
-.msg-erro-pagamento {
-    color: #333;
-    font-size: 0.9rem;
-    margin-top: 10px;
-    font-weight: 500;
-    text-align: center;
-    /* Uma animação para não aparecer do nada */
-    animation: fadeIn 0.4s ease-in-out;
-}
+/* ==========================================================================
+   5. ANIMAÇÕES (KEYFRAMES)
+   ========================================================================== */
 
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(-5px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   6. RESPONSIVIDADE (OPCIONAL - AJUSTE PARA MOBILE)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    .titulo-finalizar {
+        font-size: 2rem;
+    }
+    
+    .card-item-final {
+        width: 130px;
+    }
+    
+    .img-final {
+        width: 120px;
+        height: 120px;
+    }
 }

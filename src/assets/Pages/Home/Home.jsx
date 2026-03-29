@@ -66,7 +66,7 @@ const Home = ({ onIniciar }) => {
                     <div className="conteudo-secao">
                         <h2 className="titulo-secao">O jeito <span className='texto-destaque'>Mania</span> de ser!</h2>
                         <p className="texto-secao">
-                            Por que escolher o comum quando você pode criar o extraordinário? Escolha seus sabores favoritos, temos adicionais incríveis e monte uma combinação única que é a sua cara!
+                            Por que escolher o comum quando você pode criar o extraordinário? Escolha seus sabores favoritos! Temos adicionais incríveis.
                         </p>
                     </div>
                     <div className="janela-milkshake cor-janela-milkshake-chocolate">

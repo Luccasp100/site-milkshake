@@ -1,7 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@400;500;600;700&display=swap');
 
 /* ==========================================================================
-   1. CONFIGURAÇÕES GERAIS E ESTRUTURA (LAYOUT)
+   1. TEMAS DE CORES (SABORES)
+   ========================================================================== */
+
+/* --- CORES DINÂMICAS DO CARROSSEL --- */
+.sabor-chocolate { background-color: #ede0d4 !important; } /* Caramelo sutil */
+.sabor-morango   { background-color: #fae4e2 !important; } /* Rosa suave */
+.sabor-baunilha  { background-color: #fdf5e6cc !important; } /* Marfim/Baunilha */
+.sabor-flocos    { background-color: #e4ded9 !important; } /* bege claro */
+.sabor-banana    { background-color: #fdf5c7 !important; } /* Um amarelo claro */
+
+/* --- CORES DAS JANELAS ESTÁTICAS --- */
+.cor-janela-milkshake-chocolate { background-color: #ede0d4; }
+.cor-janela-milkshake-morango   { background-color: #fae4e2; }
+
+/* ==========================================================================
+   2. CONFIGURAÇÕES GERAIS E ESTRUTURA (LAYOUT)
    ========================================================================== */
 
 .home-page-wrapper {
@@ -48,7 +63,7 @@
 }
 
 /* ==========================================================================
-   2. TIPOGRAFIA E ELEMENTOS DE TEXTO
+   3. TIPOGRAFIA E ELEMENTOS DE TEXTO
    ========================================================================== */
 
 .titulo-app {
@@ -79,7 +94,7 @@
 }
 
 /* ==========================================================================
-   3. COMPONENTES (BOTÕES, JANELAS E DIAMANTES)
+   4. COMPONENTES (BOTÕES, JANELAS E DIAMANTES)
    ========================================================================== */
 
 /* --- BOTÕES --- */
@@ -129,7 +144,7 @@
 }
 
 /* ==========================================================================
-   4. CARROSSEL (BANNER E NAVEGAÇÃO)
+   5. CARROSSEL (BANNER E NAVEGAÇÃO)
    ========================================================================== */
 
 .banner-destaque {
@@ -241,21 +256,6 @@
     height: 1.2rem;
     object-fit: contain;
 }
-
-/* ==========================================================================
-   5. TEMAS DE CORES (SABORES)
-   ========================================================================== */
-
-/* --- CORES DINÂMICAS DO CARROSSEL --- */
-.sabor-chocolate { background-color: #ede0d4 !important; } /* Caramelo sutil */
-.sabor-morango   { background-color: #fae4e2 !important; } /* Rosa suave */
-.sabor-baunilha  { background-color: #fdf5e6cc !important; } /* Marfim/Baunilha */
-.sabor-flocos    { background-color: #e4ded9 !important; } /* bege claro */
-.sabor-banana    { background-color: #fdf5c7 !important; } /* Um amarelo claro */
-
-/* --- CORES DAS JANELAS ESTÁTICAS --- */
-.cor-janela-milkshake-chocolate { background-color: #ede0d4; }
-.cor-janela-milkshake-morango   { background-color: #fae4e2; }
 
 /* ==========================================================================
    6. ANIMAÇÕES (KEYFRAMES)

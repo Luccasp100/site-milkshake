@@ -1,4 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;500;600&display=swap');
+
+/* ==========================================================================
+   1. CONFIGURAÇÕES GERAIS E LAYOUT
+   ========================================================================== */
+
 
 .footer-container {
     width: 100%;
@@ -8,23 +13,44 @@
     padding-bottom: 40px;
 }
 
+/* --- VARIAÇÕES DE FUNDO (BACKGROUNDS) --- */
+.footer-container.bg-home {
+    background-color: #fff9f9; /* Cor exata da sua Home */
+    transition: background-color 0.3s ease;
+}
+
+.footer-container.bg-branco {
+    background-color: #ffffff; /* Fundo para as páginas de opções */
+    transition: background-color 0.3s ease;
+}
+
+/* ==========================================================================
+   2. ELEMENTOS ESTRUTURAIS (LINHA E CONTEÚDO)
+   ========================================================================== */
+
 .footer-linha-fina {
     width: 90%;
-    /* Largura da linha */
     max-width: 1200px;
     height: 1px;
     background-color: #eee;
     margin-bottom: 30px;
 }
 
+/* Ajuste da cor da linha quando o fundo for branco */
+.bg-branco .footer-linha-fina {
+    background-color: #f0f0f0;
+}
+
 .footer-content {
     display: flex;
-    flex-direction: column;
-    /* Deixa texto em cima e ícones embaixo */
+    flex-direction: column; /* Texto em cima, ícones embaixo */
     align-items: center;
-    gap: 15px;
-    /* Espaço entre o texto e os ícones */
+    gap: 15px; /* Espaço entre texto e ícones */
 }
+
+/* ==========================================================================
+   3. TIPOGRAFIA E ELEMENTOS DE TEXTO
+   ========================================================================== */
 
 .footer-texto {
     font-family: "Poppins", sans-serif;
@@ -34,48 +60,44 @@
     margin: 0;
 }
 
+/* ==========================================================================
+   4. REDES SOCIAIS E ÍCONES
+   ========================================================================== */
+
 .footer-redes {
     display: flex;
-    gap: 20px;
-    /* Espaço entre os ícones */
+    gap: 20px; /* Espaço entre os ícones */
 }
 
 .footer-icone {
     width: 50px;
-    /* Tamanho menor para os ícones */
     height: 50px;
-    transition: transform 0.2s ease, opacity 0.2s ease;
     cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
-/* Efeito ao passar o mouse */
+/* --- EFEITOS --- */
 .footer-icone:hover {
     transform: scale(1.1);
+    opacity: 0.8;
 }
 
-.footer-container.bg-home {
-    background-color: #fff9f9; /* Cor exata da sua Home */
-    transition: background-color 0.3s ease; /* Transição suave na troca */
-}
+/* ==========================================================================
+   5. RESPONSIVIDADE (MEDIA QUERIES)
+   ========================================================================== */
 
-.footer-container.bg-branco {
-    background-color: #ffffff; /* Fica branco nas opções */
-    transition: background-color 0.3s ease;
-}
-
-/* Ajuste opcional: se a linha fina estiver sumindo no branco, 
-   podemos mudar a cor dela também */
-.bg-branco .footer-linha-fina {
-    background-color: #f0f0f0;
-}
-
-/* --- AJUSTE PARA MOBILE --- */
+/* TABLETS E CELULARES (768px) */
 @media (max-width: 768px) {
     .footer-texto {
         font-size: 1.1rem;
     }
 
     .footer-icone {
-        width: 3rem;
+        width: 40px; /* Reduz levemente para mobile */
+        height: 40px;
+    }
+
+    .footer-linha-fina {
+        width: 85%;
     }
 }

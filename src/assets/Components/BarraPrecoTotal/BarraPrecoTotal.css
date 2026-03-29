@@ -1,3 +1,7 @@
+/* ==========================================================================
+   1. ESTRUTURA E CONTAINER PRINCIPAL
+   ========================================================================== */
+
 .barra-total-fixa {
     margin: 40px auto 40px;
     width: 90%;
@@ -14,6 +18,10 @@
     justify-content: space-between;
     align-items: center;
 }
+
+/* ==========================================================================
+   2. TEXTOS E VALORES (INFO)
+   ========================================================================== */
 
 .textos {
     display: flex;
@@ -37,7 +45,15 @@
     margin-top: 4px;
 }
 
-/* O BOTÃO DO CARRINHO */
+/* Ajuste para o ContadorAnimado não quebrar o layout */
+.valor-dinamico > div {
+    display: inline-block;
+}
+
+/* ==========================================================================
+   3. COMPONENTES (BOTÃO DO CARRINHO)
+   ========================================================================== */
+
 .btn-carrinho-icone {
     background-color: rgba(255, 255, 255, 0.3); /* Círculo sutil branco por trás */
     border: none;
@@ -62,12 +78,9 @@
     /* filter: invert(1); <- para branco */
 }
 
-/* Ajuste para o ContadorAnimado não quebrar o layout */
-.valor-dinamico > div {
-    display: inline-block;
-}
-
-/*--------- RESPONSIVIDADE ---------*/
+/* ==========================================================================
+   4. RESPONSIVIDADE (MEDIA QUERIES)
+   ========================================================================== */
 
 /* TABLETS E LAPTOPS PEQUENOS (1024px) */
 @media (max-width: 1024px) {
@@ -84,9 +97,9 @@
 /* TABLETS E CELULARES GRANDES (768px) */
 @media (max-width: 768px) {
     .barra-total-fixa {
-        width: 90%; /* Reduzimos um pouco para garantir que não toque as bordas */
+        width: 90%; 
         margin: 20px auto 40px; 
-        padding: 10px 15px; /* Padding levemente menor */
+        padding: 10px 15px; 
         border-radius: 15px;
         box-sizing: border-box; /* impede que o padding cause rolagem lateral */
     }
@@ -101,12 +114,12 @@
     }
 
     .btn-carrinho-icone {
-        width: 45px; /* Reduzimos o círculo do carrinho */
+        width: 45px; 
         height: 45px;
     }
 
     .btn-carrinho-icone img {
-        width: 22px; /* Ícone interno menor */
+        width: 22px; 
         height: 22px;
     }
 }

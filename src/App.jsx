@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import Home from './assets/Pages/Home/Home';
 import AnimacaoLiquido from './assets/Components/AnimacaoLiquido/AnimacaoLiquido';
-import OpcaoMilkshake from './assets/Components/OpcaoTamanho/OpcaoTamanho';
-import OpcaoAdicionais from './assets/Components/OpcaoAdicionais/OpcaoAdicionais';
-import BarraTotal from './assets/Components/BarraPrecoTotal/BarraPrecoTotal';
-import './assets/Components/CssGlobal/OpcoesGlobais.css'; //estilo global da customização dos milkshakes
+import OpcaoTamanho from './assets/Components/OpcaoTamanho/OpcaoTamanho'
 import OpcaoSabores from './assets/Components/OpcaoSabores/OpcaoSabores';
-import JanelaCarrinho from './assets/Components/JanelaCarrinho/JanelaCarrinho';
+import OpcaoAdicionais from './assets/Components/OpcaoAdicionais/OpcaoAdicionais';
 import PedidoFinalizado from './assets/Components/PedidoFinalizado/PedidoFinalizado';
+import BarraTotal from './assets/Components/BarraPrecoTotal/BarraPrecoTotal';
+import JanelaCarrinho from './assets/Components/JanelaCarrinho/JanelaCarrinho';
 import Footer from './assets/Layout/Footer/Footer';
+import './assets/Components/CssGlobal/OpcoesGlobais.css'; //estilo global da customização dos milkshakes
 
 function App() {
     // 1. ESTADOS DE NAVEGAÇÃO E ANIMAÇÃO
@@ -123,7 +123,7 @@ function App() {
 
                 {/* TELA 3: SELEÇÃO DE TAMANHOS */}
                 {tela === 'opcoes' && (
-                    <OpcaoMilkshake
+                    <OpcaoTamanho
                         onSelecionar={(item) => {
                             // Verificação de segurança: só atualiza se o item tiver preço
                             const valor = item?.preco ?? 0;

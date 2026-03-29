@@ -1,45 +1,35 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
-/* CONTAINER PRINCIPAL */
+/* ==========================================================================
+   1. CONFIGURAÇÕES GERAIS E ESTRUTURA
+   ========================================================================== */
+
 .opcoes-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* Centraliza todos os blocos no meio da tela */
     padding: 60px 0;
     font-family: 'Inter', sans-serif;
     position: relative;
 }
 
-button,
-a,
-img,
-.card-opcao {
+button, a, img, .card-opcao {
     -webkit-tap-highlight-color: transparent;
     outline: none;
-    /* Garante que o contorno de foco também suma */
 }
 
-.card-opcao:active {
-    opacity: 0.7;
-    transform: scale(0.95);
-    /* Dá uma leve sensação de clique/pressão */
-    transition: 0.2s;
-}
+/* ==========================================================================
+   2. NAVEGAÇÃO E TÍTULOS (BOTÃO VOLTAR)
+   ========================================================================== */
 
-/* ÁREA DE ALINHAMENTO DO BOTÃO VOLTAR */
-/* Esta div garante que o botão comece exatamente onde a barra começa */
 .area-voltar {
     width: 85%;
     max-width: 500px;
     display: flex;
     justify-content: flex-start;
     margin-bottom: 20px;
-    /* Adicionamos o mesmo padding que a sua .barra-total possui (30px) */
-    /* Assim o botão começa exatamente onde a palavra "Total" começa */
     padding: 0 30px;
     box-sizing: border-box;
-    /* Garante que o padding não aumente o tamanho da caixa */
 }
 
 .btn-voltar-topo {
@@ -52,7 +42,6 @@ img,
     align-items: center;
     gap: 8px;
     padding: 0;
-    /* Se a seta ainda parecer muito "pra fora", use um margin-left negativo de leve: */
     margin-left: -5px;
     transition: color 0.2s, transform 0.2s;
 }
@@ -66,7 +55,6 @@ img,
     font-size: 1.4rem;
 }
 
-/* TÍTULO */
 .titulo-selecao {
     font-weight: 500;
     font-size: 1.5rem;
@@ -74,20 +62,20 @@ img,
     text-align: center;
 }
 
-/* GRID DE OPÇÕES */
+/* ==========================================================================
+   3. GRID E CARDS DE OPÇÕES
+   ========================================================================== */
+
 .grid-opcoes {
     display: flex;
     flex-wrap: wrap;
-    /* Permite quebrar linha após o 4º item */
     justify-content: center;
-    /* Centraliza sempre */
     gap: 30px;
     max-width: 800px;
     width: 100%;
     margin: 0 auto;
 }
 
-/* CARDS */
 .card-opcao {
     flex: 0 1 calc(25% - 30px);
     min-width: 150px;
@@ -99,17 +87,21 @@ img,
     transform: scale(1.05);
 }
 
+.card-opcao:active {
+    opacity: 0.7;
+    transform: scale(0.95);
+    transition: 0.2s;
+}
+
 .container-img {
     width: 100%;
     height: 150px;
-    /* Ajuste conforme seu layout */
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
     border-radius: 12px;
     background-color: #f0f0f0;
-    /* Um fundo neutro caso a imagem demore a carregar */
     margin-bottom: 10px;
 }
 
@@ -117,24 +109,23 @@ img,
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* Faz a imagem preencher o espaço sem esticar */
     transition: transform 0.3s ease;
 }
 
 .card-opcao:hover .img-opcao {
     transform: scale(1.1);
-    /* Um efeitinho de zoom ao passar o mouse */
 }
 
-/* --- FEEDBACK DE SELEÇÃO --- */
+/* ==========================================================================
+   4. FEEDBACK DE SELEÇÃO E TEXTOS
+   ========================================================================== */
+
 .card-opcao.ativo .container-img {
     border-color: #f27a7a;
     box-shadow: 0 0 15px rgba(248, 93, 93, 0.4);
-    /* Um brilho suave para destacar */
     background-color: #a0e4ee;
 }
 
-/* mudar a cor do texto quando selecionado */
 .card-opcao.ativo .txt-nome {
     color: #f27a7a;
     font-weight: bold;
@@ -143,16 +134,11 @@ img,
 .info-txt {
     display: flex;
     flex-direction: column;
-    /* Força um item para baixo do outro */
     align-items: center;
-    /* Centraliza os textos horizontalmente */
     gap: 4px;
-    /* Espaçamento pequeno entre o nome e o preço */
     margin-top: 10px;
 }
 
-
-/* TEXTOS DOS QUADRADOS DOS ITENS */
 .txt-nome {
     font-weight: bold;
     font-size: 1.1rem;
@@ -162,14 +148,16 @@ img,
     font-size: 0.95rem;
 }
 
-.txt-nome,
-.txt-preco {
+.txt-nome, .txt-preco {
     font-family: "Poppins", sans-serif;
     font-weight: 600;
     font-style: normal;
 }
 
-/* BOTÃO PRÓXIMO */
+/* ==========================================================================
+   5. COMPONENTES DE AÇÃO (BOTÃO PRÓXIMO)
+   ========================================================================== */
+
 .btn-proximo {
     margin-top: 50px;
     padding: 15px 50px;
@@ -189,7 +177,9 @@ img,
     background-color: #ff9494;
 }
 
-/*animação fade in*/
+/* ==========================================================================
+   6. ANIMAÇÕES (FADE IN/OUT)
+   ========================================================================== */
 
 .fade-in {
     opacity: 1;
@@ -201,18 +191,18 @@ img,
     transition: opacity 0.5s ease-in-out;
 }
 
-/*--------- RESPONSIVIDADE ---------*/
+/* ==========================================================================
+   7. RESPONSIVIDADE (MEDIA QUERIES)
+   ========================================================================== */
 
 /* TABLETS E LAPTOPS PEQUENOS (1024px) */
 @media (max-width: 1024px) {
     .grid-opcoes {
         max-width: 90%;
-        /* Dá um pouco mais de respiro nas laterais */
         gap: 20px;
     }
 
     .card-opcao {
-        /* Ajusta para 3 itens por linha (33.33%) */
         flex: 0 1 calc(33.33% - 20px);
     }
 }
@@ -221,7 +211,6 @@ img,
 @media (max-width: 768px) {
     .opcoes-container {
         padding: 40px 0;
-        /* Diminui o recuo superior */
     }
 
     .titulo-selecao {
@@ -235,26 +224,22 @@ img,
     }
 
     .card-opcao {
-        /* Ajusta para 2 itens por linha (50%) */
         flex: 0 1 calc(50% - 15px);
         min-width: 140px;
     }
 
     .container-img {
         height: 130px;
-        /* Reduz um pouco a altura da imagem para não ocupar a tela toda */
     }
 
     .area-voltar {
         width: 100%;
         padding: 0 20px;
         justify-content: center;
-        /* Centraliza o voltar no mobile pra facilitar o clique */
     }
 
     .btn-proximo {
         width: 80%;
-        /* Botão maior no mobile para facilitar o toque */
         padding: 15px 0;
     }
 }
