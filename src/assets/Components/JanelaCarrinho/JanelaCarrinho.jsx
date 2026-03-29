@@ -43,17 +43,26 @@ return (
                 {listaDeItens.length === 0 ? (
                     <p className="carrinho-vazio">Nenhum item selecionado</p>
                 ) : (
-                    listaDeItens.map((item, index) => (
-                        <div key={index} className="carrinho-item-card">
-                            <img src={item?.imagem} alt={item?.nome} className="img-carrinho" />
-                            <div className="item-info">
-                                <span className="nome-carrinho">{item?.nome}</span>
-                                <span className="preco-carrinho">
-                                    R$ {(item?.preco || 0).toFixed(2).replace('.', ',')}
-                                </span>
-                            </div>
-                        </div>
-                    ))
+                    <div className="carrinho-lista-container"> 
+                        {listaDeItens.map((item, index) => (
+                            <React.Fragment key={index}>
+                                {/* Rótulos para organizar o pedido */}
+                                {index === 0 && <p className="rotulo-categoria">Copo:</p>}
+                                {index === 1 && <p className="rotulo-categoria">Sabor:</p>}
+                                {index === 2 && <p className="rotulo-categoria">Adicionais:</p>}
+
+                                <div className="carrinho-item-card">
+                                    <img src={item?.imagem} alt={item?.nome} className="img-carrinho" />
+                                    <div className="item-info">
+                                        <span className="nome-carrinho">{item?.nome}</span>
+                                        <span className="preco-carrinho">
+                                            R$ {(item?.preco || 0).toFixed(2).replace('.', ',')}
+                                        </span>
+                                    </div>
+                                </div>
+                            </React.Fragment>
+                        ))}
+                    </div>     
                 )}
             </div>
 
