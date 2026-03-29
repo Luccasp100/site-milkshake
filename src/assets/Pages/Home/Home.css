@@ -126,6 +126,8 @@
     transition: transform 0.3s ease;
     cursor: pointer;
     flex-shrink: 0;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
@@ -411,16 +413,16 @@
     }
 
     .janela-carrossel {
-        width: 100%; 
+        width: 95%; 
         height: 238px; /* Diminuímos a altura para ficar mais proporcional no celular */
     }
 
     .seta-carrossel.esquerda {
-        left: -40px; /* Move a seta para dentro da borda esquerda */
+        left: -34px; /* Move a seta para dentro da borda esquerda */
     }
 
     .seta-carrossel.direita {
-        right: -40px; /* Move a seta para dentro da borda direita */
+        right: -34px; /* Move a seta para dentro da borda direita */
     }
 
     /* 4. Reduzimos o tamanho das setas para não cobrirem muito o milkshake */
