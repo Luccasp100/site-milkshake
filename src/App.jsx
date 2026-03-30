@@ -51,7 +51,7 @@ function App() {
 
     // 3. LOGICA DE FILTRO DE ANIMAÇÃO
     //lista das telas que DEVEM ter o efeito de fade
-    const telasComAnimacao = ['opcoes', 'adicionais', 'sabores'];
+    const telasComAnimacao = ['opcoes', 'adicionais', 'sabores','resumo'];
     const deveAnimar = telasComAnimacao.includes(tela);
 
     // --- FUNÇÕES DE TRANSIÇÃO ---
@@ -168,6 +168,7 @@ function App() {
                         escolhas={escolhas}
                         total={totalPedido} // Use totalPedido que é sua soma real
                         aoVoltarHome={aoVoltarHome} // Usa a função com reset
+                        onVoltar={() => mudarDeTela('adicionais')}
                         aoReiniciarMilkshake={() => {
                             resetarTudo(); // Zera os valores para a nova escolha
                             mudarDeTela('opcoes');

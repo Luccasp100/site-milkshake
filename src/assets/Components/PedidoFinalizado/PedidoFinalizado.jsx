@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './PedidoFinalizado.css';
 
-const PedidoFinalizado = ({ escolhas, total, aoVoltarHome, aoReiniciarMilkshake }) => {
+const PedidoFinalizado = ({ escolhas, total, aoVoltarHome, aoReiniciarMilkshake, onVoltar }) => {
     const [mostrarErro, setMostrarErro] = useState(false);
 
     // Separa o que é item único (tamanho/sabor) do que é lista (adicionais)
@@ -10,6 +10,12 @@ const PedidoFinalizado = ({ escolhas, total, aoVoltarHome, aoReiniciarMilkshake 
 
     return (
         <div className="finalizar-container">
+            <div className="area-voltar">
+                <button className="btn-voltar-topo" onClick={onVoltar}>
+                    <span className="seta">←</span> Voltar
+                </button>
+            </div>
+
             <h1 className="titulo-finalizar">Pedido completo</h1>
 
             <div className="resumo-pedido">
@@ -49,7 +55,7 @@ const PedidoFinalizado = ({ escolhas, total, aoVoltarHome, aoReiniciarMilkshake 
                 </button>
 
                 <button className="btn-final btn-secundario" onClick={aoReiniciarMilkshake}>
-                    Voltar a opções
+                    Reiniciar Milkshake
                 </button>
 
                 <div className="container-pagamento">

@@ -118,3 +118,28 @@
     0%, 100% { transform: translateX(0) scaleX(1); }
     50% { transform: translateX(8px) scaleX(0.9); }
 }
+
+/* ==========================================================================
+   6. RESPONSIVIDADE DO LOADING
+   ========================================================================== */
+
+/* TABLETS (1024px) */
+@media (max-width: 1024px) {
+    .texto-teste {
+        font-size: 2rem; /* Diminui um pouco para tablets */
+        width: 85%;
+    }
+}
+
+/* CELULARES (480px) */
+@media (max-width: 480px) {
+    .texto-teste {
+        font-size: 1.6rem; /* Fonte menor para não ocupar a tela toda */
+        width: 90%;
+        line-height: 1.2; /* Melhora o respiro entre as linhas se o texto quebrar */
+    }
+
+    .fluxo-liquido {
+        width: 30px; /* Jato de líquido um pouco mais fino no celular */
+    }
+}
