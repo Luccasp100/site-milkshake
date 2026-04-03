@@ -116,6 +116,33 @@ button, a, img, .card-opcao {
     transform: scale(1.1);
 }
 
+/* Badge do Contador no Card */
+/*somente da tela adicionais*/
+.contador-badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: #f27a7a; 
+    color: white;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 900;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border: 2px solid white;
+    z-index: 10;
+    animation: bounceIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes bounceIn {
+    from { transform: scale(0); }
+    to { transform: scale(1); }
+}
+
 /* ==========================================================================
    4. FEEDBACK DE SELEÇÃO E TEXTOS
    ========================================================================== */
